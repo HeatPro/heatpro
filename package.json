@@ -1,0 +1,9 @@
+{
+  "name": "heatpro",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "turbo": "^2.3.0"
+  }
+}
