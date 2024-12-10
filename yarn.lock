@@ -9,7 +9,7 @@ turbo-darwin-64@2.3.0:
 
 turbo-darwin-arm64@2.3.0:
   version "2.3.0"
-  resolved "https://registry.yarnpkg.com/turbo-darwin-arm64/-/turbo-darwin-arm64-2.3.0.tgz#3e058a4e41130abce9df49a1fb5e271af85a1d99"
+  resolved "https://registry.npmjs.org/turbo-darwin-arm64/-/turbo-darwin-arm64-2.3.0.tgz"
   integrity sha512-AJrGIL9BO41mwDF/IBHsNGwvtdyB911vp8f5mbNo1wG66gWTvOBg7WCtYQBvCo11XTenTfXPRSsAb7w3WAZb6w==
 
 turbo-linux-64@2.3.0:
@@ -34,7 +34,7 @@ turbo-windows-arm64@2.3.0:
 
 turbo@^2.3.0:
   version "2.3.0"
-  resolved "https://registry.yarnpkg.com/turbo/-/turbo-2.3.0.tgz#01e7841fafdd870564e1ad376b42dbc8a71d52b3"
+  resolved "https://registry.npmjs.org/turbo/-/turbo-2.3.0.tgz"
   integrity sha512-/uOq5o2jwRPyaUDnwBpOR5k9mQq4c3wziBgWNWttiYQPmbhDtrKYPRBxTvA2WpgQwRIbt8UM612RMN8n/TvmHA==
   optionalDependencies:
     turbo-darwin-64 "2.3.0"
