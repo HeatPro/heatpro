@@ -28,6 +28,8 @@
     "@nestjs/mongoose": "^10.1.0",
     "@nestjs/platform-express": "^10.0.0",
     "mongoose": "^8.8.1",
+    "nest-keycloak-connect": "^1.10.1",
+    "openid-client": "^6.1.7",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1"
   },
