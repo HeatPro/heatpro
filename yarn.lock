@@ -8361,7 +8361,7 @@ mongodb@~6.12.0:
     bson "^6.10.1"
     mongodb-connection-string-url "^3.0.0"
 
-"mongoose@^6.0.2 || ^7.0.0 || ^8.0.0", mongoose@^8.8.1:
+"mongoose@^6.0.2 || ^7.0.0 || ^8.0.0", mongoose@^8.9.1:
   version "8.9.1"
   resolved "https://registry.npmjs.org/mongoose/-/mongoose-8.9.1.tgz"
   integrity sha512-whM6lWMdeKlUm4d2LSLS/q6cWtTp13lUrL5hy2YTsQdTSN+dsAu8HLdLUQOEgtBE59qp4IqLrjSXCSETbxhkQQ==
