@@ -6,6 +6,7 @@ interface CustomInput {
   placeholder: string;
   icon: keyof typeof Ionicons.glyphMap;
   secureTextEntry?: boolean;
+  value?: string;
   onChangeText?: (text: string) => void;
 }
 

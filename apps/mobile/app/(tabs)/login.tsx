@@ -6,6 +6,8 @@ import { CustomButton } from '@/components/ui/CustomButton';
 import { Checkbox } from '@/components/ui/Checkbox';
 
 export default function LoginScreen() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
 
   const handleLogin = () => {
@@ -30,11 +32,15 @@ export default function LoginScreen() {
         <CustomInput
           placeholder="Nom d'utilisateur"
           icon="person-outline"
+          onChangeText={setUsername}
+          value={username}
         />
         <CustomInput
           placeholder="Mot de passe"
           icon="lock-closed-outline"
           secureTextEntry
+          onChangeText={setPassword}
+          value={password}
         />
 
         {/* Remember Me and Forgot Password */}
