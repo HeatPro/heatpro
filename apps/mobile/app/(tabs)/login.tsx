@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image,Alert, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { CustomInput } from '@/components/ui/CustomInput';
 import { CustomButton } from '@/components/ui/CustomButton';
@@ -10,9 +10,55 @@ export default function LoginScreen() {
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
 
-  const handleLogin = () => {
-    // Handle login logic here
-    console.log('Login pressed');
+  const handleLogin = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/auth/login/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password,
+        }),
+      });
+
+      console.log('[DEBUG] username:', username);
+      console.log('[DEBUG] password:', password);
+
+      const data = await response.json();
+      console.log('[DEBUG] Response:', data); // Log the full response
+
+      // Check if we have an access_token in the response
+      if (data.access_token) {
+        console.log('[DEBUG] Token received');
+        Alert.alert(
+          'Succès',
+          'Connexion réussie',
+          [
+            { text: 'OK', onPress: () => console.log('OK Pressed') }
+          ]
+        );
+      } else {
+        Alert.alert(
+          'Erreur',
+          'Identifiants invalides',
+          [
+            { text: 'OK', onPress: () => console.log('Error OK Pressed') }
+          ]
+        );
+      }
+
+    } catch (error) {
+      console.error('[DEBUG] Login error:', error);
+      Alert.alert(
+        'Erreur',
+        'Une erreur est survenue lors de la connexion',
+        [
+          { text: 'OK', onPress: () => console.log('Error OK Pressed') }
+        ]
+      );
+    }
   };
 
   return (
