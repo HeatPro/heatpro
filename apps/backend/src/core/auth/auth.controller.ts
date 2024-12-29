@@ -1,24 +1,18 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Post, Body, Logger } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { Public, Roles } from 'nest-keycloak-connect';
+import { LoginDto } from './interfaces/login.interface';
+import { Public } from 'nest-keycloak-connect';
 
 @Controller('auth')
 export class AuthController {
+  private readonly logger = new Logger(AuthController.name);
+
   constructor(private readonly authService: AuthService) {}
 
-  @Get('protectedHello')
-  getHello() {
-    return this.authService.getHelloAuth();
-  }
-
   @Public()
-  @Get('public')
-  getPublic() {
-    return { message: 'This is a public endpoint' };
-  }
-
-  @Get('protected')
-  getProtected() {
-    return { message: 'This is a protected endpoint - only accessible with valid token' };
+  @Post('login')
+  async login(@Body() loginDto: LoginDto) {
+    this.logger.debug(`Login attempt for user: ${loginDto.username}`);
+    return this.authService.login(loginDto);
   }
 }
