@@ -1,14 +1,99 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image,Alert, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, Image, Alert, TouchableOpacity, Platform } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import * as LocalAuthentication from 'expo-local-authentication';
 import { CustomInput } from '@/components/ui/CustomInput';
 import { CustomButton } from '@/components/ui/CustomButton';
 import { Checkbox } from '@/components/ui/Checkbox';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function LoginScreen() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
+  const [isBiometricSupported, setIsBiometricSupported] = useState(false);
+  const [isBiometricEnabled, setIsBiometricEnabled] = useState(false);
+  const [biometricType, setBiometricType] = useState<LocalAuthentication.AuthenticationType | null>(null);
+
+  // Check biometric support and type
+  useEffect(() => {
+    checkBiometricSupport();
+  }, []);
+
+  const checkBiometricSupport = async () => {
+    try {
+      // Check if hardware supports biometrics
+      const compatible = await LocalAuthentication.hasHardwareAsync();
+      setIsBiometricSupported(compatible);
+
+      if (compatible) {
+        // Check if biometrics are enrolled
+        const enrolled = await LocalAuthentication.isEnrolledAsync();
+        setIsBiometricEnabled(enrolled);
+
+        // Get available biometric types
+        const types = await LocalAuthentication.supportedAuthenticationTypesAsync();
+
+        // Check if Face ID is available (type 2 is Face ID)
+        if (types.includes(LocalAuthentication.AuthenticationType.FACIAL_RECOGNITION)) {
+          setBiometricType(LocalAuthentication.AuthenticationType.FACIAL_RECOGNITION);
+        } else if (types.includes(LocalAuthentication.AuthenticationType.FINGERPRINT)) {
+          setBiometricType(LocalAuthentication.AuthenticationType.FINGERPRINT);
+        }
+
+        console.log('Biometric type:', types);
+      }
+    } catch (error) {
+      console.error('Error checking biometric support:', error);
+    }
+  };
+
+  const handleBiometricAuth = async () => {
+    try {
+      // Check if biometrics are still available
+      const available = await LocalAuthentication.getEnrolledLevelAsync();
+      if (!available) {
+        Alert.alert(
+          'Non disponible',
+          'L\'authentification biométrique n\'est pas disponible',
+          [{ text: 'OK' }]
+        );
+        return;
+      }
+
+      // Attempt authentication
+      const result = await LocalAuthentication.authenticateAsync({
+        promptMessage: 'Connexion avec ' + (biometricType === LocalAuthentication.AuthenticationType.FACIAL_RECOGNITION ? 'Face ID' : 'Touch ID'),
+        fallbackLabel: 'Utiliser le mot de passe',
+        disableDeviceFallback: false,
+        cancelLabel: 'Annuler'
+      });
+
+      console.log('Authentication result:', result);
+
+      if (result.success) {
+        console.log('Biometric authentication successful');
+        Alert.alert(
+          'Succès',
+          'Authentification biométrique réussie',
+          [{ text: 'OK', onPress: () => handleSuccessfulBiometricAuth() }]
+        );
+      } else if (result.error) {
+        console.log('Authentication error:', result.error);
+      }
+    } catch (error) {
+      console.error('Biometric authentication error:', error);
+      Alert.alert(
+        'Erreur',
+        'Échec de l\'authentification biométrique',
+        [{ text: 'OK' }]
+      );
+    }
+  };
+
+  const handleSuccessfulBiometricAuth = () => {
+    console.log('Processing successful biometric auth');
+  };
 
   const handleLogin = async () => {
     try {
@@ -27,7 +112,7 @@ export default function LoginScreen() {
       console.log('[DEBUG] password:', password);
 
       const data = await response.json();
-      console.log('[DEBUG] Response:', data); // Log the full response
+      console.log('[DEBUG] Response:', data);
 
       // Check if we have an access_token in the response
       if (data.access_token) {
@@ -65,7 +150,6 @@ export default function LoginScreen() {
     <View style={styles.container}>
       <StatusBar style="light" />
 
-      {/* Logo and Welcome Text */}
       <Image
         source={require('@/assets/images/logo.png')}
         style={styles.logo}
@@ -73,7 +157,6 @@ export default function LoginScreen() {
       <Text style={styles.title}>Bienvenue</Text>
       <Text style={styles.subtitle}>Connectez-vous à votre compte</Text>
 
-      {/* Input Fields */}
       <View style={styles.formContainer}>
         <CustomInput
           placeholder="Nom d'utilisateur"
@@ -89,7 +172,6 @@ export default function LoginScreen() {
           value={password}
         />
 
-        {/* Remember Me and Forgot Password */}
         <View style={styles.optionsContainer}>
           <Checkbox
             checked={rememberMe}
@@ -101,11 +183,32 @@ export default function LoginScreen() {
           </TouchableOpacity>
         </View>
 
-        {/* Login Button */}
         <CustomButton
           title="Connexion"
           onPress={handleLogin}
         />
+
+        {isBiometricSupported && isBiometricEnabled && (
+        <View style={styles.separator} />
+        )}
+
+        {isBiometricSupported && isBiometricEnabled && (
+          <TouchableOpacity
+            style={styles.biometricButton}
+            onPress={handleBiometricAuth}
+          >
+            <Ionicons
+              name={biometricType === LocalAuthentication.AuthenticationType.FACIAL_RECOGNITION ? "scan-outline" : "ios-finger-print"}
+              size={24}
+              color="#FFFFFF"
+            />
+            <Text style={styles.biometricText}>
+              {biometricType === LocalAuthentication.AuthenticationType.FACIAL_RECOGNITION
+                ? 'Utiliser Face ID'
+                : 'Utiliser Touch ID'}
+            </Text>
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );
@@ -133,7 +236,7 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 16,
     color: '#FFFFFF',
-    marginBottom: 40,
+    marginBottom: 30,
     fontWeight: 'bold',
   },
   formContainer: {
@@ -151,4 +254,26 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 14,
   },
+  separator: {
+    width: '100%',
+    height: 1,
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    marginVertical: 20,
+  },
+  biometricButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    padding: 15,
+    borderRadius: 10,
+    width: '100%',
+  },
+  biometricText: {
+    color: '#FFFFFF',
+    marginLeft: 10,
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
 });
+
