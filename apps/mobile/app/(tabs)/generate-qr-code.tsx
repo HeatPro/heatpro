@@ -2,13 +2,30 @@ import React, { useState } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { CustomInput } from '@/components/ui/CustomInput';
 import { CustomButton } from '@/components/ui/CustomButton';
+import { useNavigation } from '@react-navigation/native';
 
-export default function LoginScreen() {
+export default function GenerateQRCodeScreen() {
+  const navigation = useNavigation();
+
   const [machineName, setMachineName] = useState('');
   const [machineReference, setMachineReference] = useState('');
   const [machineAddress, setMachineAddress] = useState('');
 
   const handleGeneration = () => {
+    // Vérifier que tous les champs sont remplis
+    if (!machineName || !machineReference || !machineAddress) {
+      alert('Veuillez remplir tous les champs');
+      return;
+    }
+
+    // Naviguer vers l'écran QR Code avec les données
+    navigation.navigate('QRCode', {
+      machineData: {
+        name: machineName,
+        reference: machineReference,
+        address: machineAddress,
+      },
+    });
     console.log('Generate QR Code pressed');
   };
 
@@ -24,13 +41,13 @@ export default function LoginScreen() {
       <View style={styles.machineInfosContainer}>
         <CustomInput placeholder="Nom de la machine" icon="person-outline" onChangeText={setMachineName}
                      value={machineName} placeholderTextColor="#657DDF"
-                     inputContainerStyle={styles.customInputContainer} style={styles.customInput} />
+                     inputContainerStyle={styles.customInputContainer} />
         <CustomInput placeholder="Référence de la machine" icon={'person-outline'} onChangeText={setMachineReference}
                      value={machineReference} placeholderTextColor="#657DDF"
-                     inputContainerStyle={styles.customInputContainer} style={styles.customInput} />
+                     inputContainerStyle={styles.customInputContainer} />
         <CustomInput placeholder="Adresse de la machine" icon={'person-outline'} onChangeText={setMachineAddress}
                      value={machineAddress} placeholderTextColor="#657DDF"
-                     inputContainerStyle={styles.customInputContainer} style={styles.customInput} />
+                     inputContainerStyle={styles.customInputContainer} />
       </View>
       <View style={styles.bottomContainer}>
         <CustomButton title="Générer le QR Code" onPress={handleGeneration}
@@ -86,7 +103,6 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     shadowOpacity: 0.6
   },
-  customInput: {},
   customInputContainer: {
     shadowOffset: { width: 0, height: 3 },
     shadowColor: '#000000',
