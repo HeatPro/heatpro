@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextInput, View, StyleSheet } from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 interface CustomInput {
@@ -8,17 +8,20 @@ interface CustomInput {
   secureTextEntry?: boolean;
   value?: string;
   onChangeText?: (text: string) => void;
+  style?: object;
+  inputContainerStyle?: object;
+  placeholderTextColor?: string;
 }
 
-export function CustomInput({ placeholder, icon, secureTextEntry, onChangeText }: CustomInput) {
+export function CustomInput({ placeholder, icon, secureTextEntry, onChangeText, inputContainerStyle, textInputStyle, placeholderTextColor }: CustomInput) {
   return (
-    <View style={styles.inputContainer}>
+    <View style={[styles.inputContainer, inputContainerStyle]}>
       <Ionicons name={icon} size={20} color="#8B8B8B" style={styles.icon} />
       <TextInput
         placeholder={placeholder}
         secureTextEntry={secureTextEntry}
-        style={styles.input}
-        placeholderTextColor="#8B8B8B"
+        style={[styles.input, textInputStyle]}
+        placeholderTextColor={placeholderTextColor ? placeholderTextColor: "#8B8B8B"}
         onChangeText={onChangeText}
       />
     </View>
