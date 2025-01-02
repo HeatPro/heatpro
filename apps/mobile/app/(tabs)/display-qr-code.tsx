@@ -30,9 +30,9 @@ export default function QRCodeScreen({ route, navigation }) {
         </View>
 
         <View style={styles.machineInfos}>
-          <Text style={styles.machineInfosText}>Machine :</Text>
-          <Text style={styles.machineInfosText}>Réference :</Text>
-          <Text style={styles.machineInfosText}>Adresse :</Text>
+          <Text style={styles.machineInfosText}>Machine : {machineData.name}</Text>
+          <Text style={styles.machineInfosText}>Réference : {machineData.reference}</Text>
+          <Text style={styles.machineInfosText}>Adresse : {machineData.address}</Text>
         </View>
       </View>
 
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   machineInfosText: {
     color: '#FFFFFF',
