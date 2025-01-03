@@ -5,6 +5,7 @@ import SignaledProblemCard, { Problem, ProblemStatus } from '@/components/ui/Hea
 import VerificationsComponent from '@/components/ui/HeatProComponents/VerificationsComponent';
 import ReplacedParts, { Part } from '@/components/ui/HeatProComponents/PartsCard';
 import PartsCardComponent from '@/components/ui/HeatProComponents/PartsCard';
+import CommentCard from '@/components/ui/HeatProComponents/CommentCard';
 
 const InterventionSlider = () => {
 
@@ -74,6 +75,8 @@ const InterventionSlider = () => {
     {name: "Rotor de pompe à circulation", ref: "824526874123"},
   ]
 
+  const comment: string = "La fuite restante n’a pas pu être localisée, il faut vérifier s’il n’y a pas des joints ou des tuyaux défectueux."
+
   return (
     <ScrollView contentContainerStyle={styles.scrollContent}>
     <View style={styles.container}>
@@ -83,6 +86,7 @@ const InterventionSlider = () => {
       <VerificationsComponent verifications={verifications}></VerificationsComponent>
       <PartsCardComponent title="Pièces remplacées" parts={parts}></PartsCardComponent>
       <PartsCardComponent title="Pièces commandées" parts={parts}></PartsCardComponent>
+      <CommentCard title="Commentaires" comment={comment}></CommentCard>
     </View>
     </ScrollView>
   );
