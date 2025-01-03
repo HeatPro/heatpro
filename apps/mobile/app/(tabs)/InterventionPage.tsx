@@ -1,8 +1,10 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import InterventionCardComponent, { Field } from '@/components/ui/HeatProComponents/InfoCard';
 import SignaledProblemCard, { Problem, ProblemStatus } from '@/components/ui/HeatProComponents/SignaledProblemCard';
 import VerificationsComponent from '@/components/ui/HeatProComponents/VerificationsComponent';
+import ReplacedParts, { Part } from '@/components/ui/HeatProComponents/PartsCard';
+import PartsCardComponent from '@/components/ui/HeatProComponents/PartsCard';
 
 const InterventionSlider = () => {
 
@@ -67,13 +69,22 @@ const InterventionSlider = () => {
 
   const verifications = ['Pression système', 'Pompe de circulation', 'Intégrité brûleur', 'Circuit électrique'];
 
+  const parts: Part[] = [
+    {name: "Rotor de pompe à circulation", ref: "829294949500"},
+    {name: "Rotor de pompe à circulation", ref: "824526874123"},
+  ]
+
   return (
+    <ScrollView contentContainerStyle={styles.scrollContent}>
     <View style={styles.container}>
       <InterventionCardComponent title="Informations générales" fields={fields} />
       <InterventionCardComponent title="Technicien intervenu" fields={fieldsTechnician} />
       <SignaledProblemCard problems={problems}></SignaledProblemCard>
       <VerificationsComponent verifications={verifications}></VerificationsComponent>
+      <PartsCardComponent title="Pièces remplacées" parts={parts}></PartsCardComponent>
+      <PartsCardComponent title="Pièces commandées" parts={parts}></PartsCardComponent>
     </View>
+    </ScrollView>
   );
 };
 
@@ -85,7 +96,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#FFFFFF'
-  }
+  },
+  scrollContent: {
+    flexGrow: 1,
+    alignItems: 'center'
+  },
 });
 
 export default InterventionSlider;

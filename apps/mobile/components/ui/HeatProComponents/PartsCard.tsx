@@ -2,19 +2,34 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const VerificationCardComponent = ({ verifications }) => {
+export interface Part {
+  img?: string;
+  name: string;
+  ref: string;
+}
+
+interface PartsCardComponentProps {
+  title: string;
+  parts: Part[];
+}
+
+const PartsCardComponent: React.FC<PartsCardComponentProps> = ({ title, parts }) => {
 
   return (
     <View style={styles.container}>
       <View style={styles.card}>
         <View style={styles.cardTitleContainer}>
-          <Text style={styles.cardTitle}>Verifications effectuées</Text>
+          <Text style={styles.cardTitle}>{title}</Text>
         </View>
         <View style={styles.cardInfoContainer}>
-          {verifications.map((field, index) => (
+          {parts.map((field, index) => (
             <View style={styles.infoRow} key={index}>
-              <Icon name="check-circle" size={24} color="#4ff555" style={styles.icon} />
-              <Text style={styles.cardInfo}>{field}</Text>
+              <Icon name="check-circle" size={48} color="#4ff555" style={styles.icon} />
+              <View style={styles.partInfos}>
+                <Text style={[styles.cardInfo, styles.cardInfoMargin]}>{field.name}</Text>
+                <Text style={styles.cardInfo}>RÉF : {field.ref}</Text>
+              </View>
+
             </View>
           ))}
         </View>
@@ -74,14 +89,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 8
   },
-  cardValue: {
-    color: '#000000',
-    fontSize: 16,
-    fontWeight: '500'
+  partInfos: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  cardInfoMargin: {
+    marginBottom: 4
   },
   icon: {
     marginRight: 12
   }
 });
 
-export default VerificationCardComponent;
+export default PartsCardComponent;
