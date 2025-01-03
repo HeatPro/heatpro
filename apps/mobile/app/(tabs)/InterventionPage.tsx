@@ -6,6 +6,7 @@ import VerificationsComponent from '@/components/ui/HeatProComponents/Verificati
 import ReplacedParts, { Part } from '@/components/ui/HeatProComponents/PartsCard';
 import PartsCardComponent from '@/components/ui/HeatProComponents/PartsCard';
 import CommentCard from '@/components/ui/HeatProComponents/CommentCard';
+import AssociatedMediaCard from '@/components/ui/HeatProComponents/AssociatedMediaCard';
 
 const InterventionSlider = () => {
 
@@ -77,6 +78,8 @@ const InterventionSlider = () => {
 
   const comment: string = "La fuite restante n’a pas pu être localisée, il faut vérifier s’il n’y a pas des joints ou des tuyaux défectueux."
 
+  const media = ["check-circle", "check-circle", "check-circle", "check-circle"];
+
   return (
     <ScrollView contentContainerStyle={styles.scrollContent}>
     <View style={styles.container}>
@@ -87,6 +90,7 @@ const InterventionSlider = () => {
       <PartsCardComponent title="Pièces remplacées" parts={parts}></PartsCardComponent>
       <PartsCardComponent title="Pièces commandées" parts={parts}></PartsCardComponent>
       <CommentCard title="Commentaires" comment={comment}></CommentCard>
+      <AssociatedMediaCard title="Media associés" media={media}></AssociatedMediaCard>
     </View>
     </ScrollView>
   );
