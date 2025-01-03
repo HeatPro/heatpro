@@ -5,12 +5,13 @@ interface CustomButtonProps {
   title: string;
   onPress: () => void;
   style?: object;
+  textStyle?: object;
 }
 
-export function CustomButton({ title, onPress, style }: CustomButtonProps) {
+export function CustomButton({ title, onPress, style, textStyle }: CustomButtonProps) {
   return (
-    <TouchableOpacity style={[styles.button, style]} onPress={onPress}>
-      <Text style={styles.buttonText}>{title}</Text>
+    <TouchableOpacity style={style ? [styles.button, style] : styles.button} onPress={onPress}>
+      <Text style={textStyle ? [styles.buttonText, textStyle] : styles.buttonText}>{title}</Text>
     </TouchableOpacity>
   );
 }
