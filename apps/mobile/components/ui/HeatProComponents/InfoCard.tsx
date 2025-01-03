@@ -10,7 +10,7 @@ export interface ValueIcon {
 export interface Field {
   label: string;
   value?: string;
-  valueIcon?: ValueIcon
+  valueIcon?: ValueIcon;
   icon: ValueIcon;
 }
 
@@ -19,7 +19,7 @@ interface InterventionCardComponentProps {
   fields: Field[];
 }
 
-const InterventionCardComponent : React.FC<InterventionCardComponentProps> = ({ title, fields }) => {
+const InterventionCardComponent: React.FC<InterventionCardComponentProps> = ({ title, fields }) => {
 
   return (
     <View style={styles.container}>
@@ -56,7 +56,6 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
     flexDirection: 'column',
-    flex: 1,
     width: '100%',
     alignItems: 'center',
     backgroundColor: '#FFFFFF'
