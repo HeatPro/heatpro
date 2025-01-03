@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import InterventionCardComponent, { Field } from '@/components/ui/HeatProComponents/InfoCard';
 import SignaledProblemCard, { Problem, ProblemStatus } from '@/components/ui/HeatProComponents/SignaledProblemCard';
+import VerificationsComponent from '@/components/ui/HeatProComponents/VerificationsComponent';
 
 const InterventionSlider = () => {
 
@@ -64,11 +65,14 @@ const InterventionSlider = () => {
     }
   ];
 
+  const verifications = ['Pression système', 'Pompe de circulation', 'Intégrité brûleur', 'Circuit électrique'];
+
   return (
     <View style={styles.container}>
       <InterventionCardComponent title="Informations générales" fields={fields} />
       <InterventionCardComponent title="Technicien intervenu" fields={fieldsTechnician} />
       <SignaledProblemCard problems={problems}></SignaledProblemCard>
+      <VerificationsComponent verifications={verifications}></VerificationsComponent>
     </View>
   );
 };
