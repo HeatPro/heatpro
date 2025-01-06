@@ -19,6 +19,8 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "react-native-vector-icons": "^10.2.0"
+  }
 }
-
