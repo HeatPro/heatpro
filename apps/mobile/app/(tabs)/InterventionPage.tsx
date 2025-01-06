@@ -3,8 +3,7 @@ import { ScrollView, StyleSheet, View } from 'react-native';
 import InterventionCardComponent, { Field } from '@/components/ui/HeatProComponents/InfoCard';
 import SignaledProblemCard, { Problem, ProblemStatus } from '@/components/ui/HeatProComponents/SignaledProblemCard';
 import VerificationsComponent from '@/components/ui/HeatProComponents/VerificationsComponent';
-import ReplacedParts, { Part } from '@/components/ui/HeatProComponents/PartsCard';
-import PartsCardComponent from '@/components/ui/HeatProComponents/PartsCard';
+import PartsCardComponent, { Part } from '@/components/ui/HeatProComponents/PartsCard';
 import CommentCard from '@/components/ui/HeatProComponents/CommentCard';
 import AssociatedMediaCard from '@/components/ui/HeatProComponents/AssociatedMediaCard';
 
@@ -72,26 +71,29 @@ const InterventionSlider = () => {
   const verifications = ['Pression système', 'Pompe de circulation', 'Intégrité brûleur', 'Circuit électrique'];
 
   const parts: Part[] = [
-    {name: "Rotor de pompe à circulation", ref: "829294949500"},
-    {name: "Rotor de pompe à circulation", ref: "824526874123"},
-  ]
+    { name: 'Rotor de pompe à circulation', ref: '829294949500' },
+    { name: 'Rotor de pompe à circulation', ref: '824526874123' }
+  ];
 
-  const comment: string = "La fuite restante n’a pas pu être localisée, il faut vérifier s’il n’y a pas des joints ou des tuyaux défectueux."
+  const comment: string = 'La fuite restante n’a pas pu être localisée, il faut vérifier s’il n’y a pas des joints ou des tuyaux défectueux.';
 
-  const media = ["check-circle", "check-circle", "check-circle", "check-circle"];
+  const media: {
+    icon: string,
+    color?: string
+  }[] = [{ icon: 'check-circle' }, { icon: 'check-circle' }, { icon: 'check-circle' }, { icon: 'check-circle' }];
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContent}>
-    <View style={styles.container}>
-      <InterventionCardComponent title="Informations générales" fields={fields} />
-      <InterventionCardComponent title="Technicien intervenu" fields={fieldsTechnician} />
-      <SignaledProblemCard problems={problems}></SignaledProblemCard>
-      <VerificationsComponent verifications={verifications}></VerificationsComponent>
-      <PartsCardComponent title="Pièces remplacées" parts={parts}></PartsCardComponent>
-      <PartsCardComponent title="Pièces commandées" parts={parts}></PartsCardComponent>
-      <CommentCard title="Commentaires" comment={comment}></CommentCard>
-      <AssociatedMediaCard title="Media associés" media={media}></AssociatedMediaCard>
-    </View>
+      <View style={styles.container}>
+        <InterventionCardComponent title="Informations générales" fields={fields} />
+        <InterventionCardComponent title="Technicien intervenu" fields={fieldsTechnician} />
+        <SignaledProblemCard problems={problems}></SignaledProblemCard>
+        <VerificationsComponent verifications={verifications}></VerificationsComponent>
+        <PartsCardComponent title="Pièces remplacées" parts={parts}></PartsCardComponent>
+        <PartsCardComponent title="Pièces commandées" parts={parts}></PartsCardComponent>
+        <CommentCard title="Commentaires" comment={comment}></CommentCard>
+        <AssociatedMediaCard title="Media associés" media={media}></AssociatedMediaCard>
+      </View>
     </ScrollView>
   );
 };
@@ -108,7 +110,7 @@ const styles = StyleSheet.create({
   scrollContent: {
     flexGrow: 1,
     alignItems: 'center'
-  },
+  }
 });
 
 export default InterventionSlider;
