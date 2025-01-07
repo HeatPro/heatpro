@@ -6,6 +6,7 @@ import { CustomInput } from '@/components/ui/CustomInput';
 import { CustomButton } from '@/components/ui/CustomButton';
 import { Checkbox } from '@/components/ui/Checkbox';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { useIPAddress } from './IPContext';
 
 export default function LoginScreen() {
   const [username, setUsername] = useState('');
@@ -14,6 +15,8 @@ export default function LoginScreen() {
   const [isBiometricSupported, setIsBiometricSupported] = useState(false);
   const [isBiometricEnabled, setIsBiometricEnabled] = useState(false);
   const [biometricType, setBiometricType] = useState<LocalAuthentication.AuthenticationType | null>(null);
+
+  const { ipAddress } = useIPAddress();
 
   // Check biometric support and type
   useEffect(() => {
@@ -99,7 +102,8 @@ export default function LoginScreen() {
     try {
       console.log('[DEBUG] username:', username);
       console.log('[DEBUG] password:', password);
-      const response = await fetch('http://localhost:3000/auth/login/', {
+      console.debug('IPADDRESS: ', ipAddress);
+      const response = await fetch(`http://${ipAddress}:3000/auth/login/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
