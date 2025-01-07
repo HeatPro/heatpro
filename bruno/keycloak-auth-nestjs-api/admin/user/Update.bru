@@ -1,0 +1,23 @@
+meta {
+  name: Update
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{base_url_keycloak}}/admin/realms/{{realm}}/users/dbaebd32-234a-4d7f-9c66-1728fd887e40
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "firstName": "Bisky12",
+    "lastName": "Mursuid11"
+  }
+}
+
+script:pre-request {
+  const token = bru.getVar("adminToken");
+  req.setHeader("Authorization", `Bearer ${token}`);
+}

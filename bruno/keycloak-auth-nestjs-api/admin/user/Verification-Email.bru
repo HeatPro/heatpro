@@ -1,0 +1,21 @@
+meta {
+  name: Verification-Email
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{base_url_keycloak}}/admin/realms/{{realm}}/users/{{user_id}}/send-verify-email?redirect_uri=http://localhost:4200&client_id={{admin_client_id}}
+  body: none
+  auth: none
+}
+
+params:query {
+  redirect_uri: http://localhost:4200
+  client_id: {{admin_client_id}}
+}
+
+script:pre-request {
+  const token = bru.getVar("adminToken");
+  req.setHeader("Authorization", `Bearer ${token}`);
+}
