@@ -21,6 +21,7 @@
     "packages/*"
   ],
   "dependencies": {
-    "expo-local-authentication": "^15.0.1"
+    "expo-local-authentication": "^15.0.1",
+    "react-native-vector-icons": "^10.2.0"
   }
 }
