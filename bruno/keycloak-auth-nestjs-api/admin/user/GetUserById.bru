@@ -1,0 +1,23 @@
+meta {
+  name: GetUserById
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{base_url_keycloak}}/admin/realms/{{realm}}/users/{{user_id}}
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "firstName": "Bisky12",
+    "lastName": "Mursuid11"
+  }
+}
+
+script:pre-request {
+  const token = bru.getVar("adminToken");
+  req.setHeader("Authorization", `Bearer ${token}`);
+}

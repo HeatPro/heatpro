@@ -97,6 +97,8 @@ export default function LoginScreen() {
 
   const handleLogin = async () => {
     try {
+      console.log('[DEBUG] username:', username);
+      console.log('[DEBUG] password:', password);
       const response = await fetch('http://localhost:3000/auth/login/', {
         method: 'POST',
         headers: {

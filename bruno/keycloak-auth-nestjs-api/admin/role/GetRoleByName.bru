@@ -1,0 +1,16 @@
+meta {
+  name: GetRoleByName
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{base_url_keycloak}}/admin/realms/{{realm}}/roles/ADMIN
+  body: none
+  auth: none
+}
+
+script:pre-request {
+  const token = bru.getVar("adminToken");
+  req.setHeader("Authorization", `Bearer ${token}`);
+}
