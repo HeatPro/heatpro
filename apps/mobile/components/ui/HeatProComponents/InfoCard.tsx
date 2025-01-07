@@ -17,15 +17,17 @@ export interface Field {
 interface InterventionCardComponentProps {
   title: string;
   fields: Field[];
+  topRightInfo?: string;
 }
 
-const InterventionCardComponent: React.FC<InterventionCardComponentProps> = ({ title, fields }) => {
+const InterventionCardComponent: React.FC<InterventionCardComponentProps> = ({ title, fields, topRightInfo }) => {
 
   return (
     <View style={styles.container}>
       <View style={styles.card}>
-        <View style={styles.cardTitleContainer}>
+        <View style={styles.cardHeaderContainer}>
           <Text style={styles.cardTitle}>{title}</Text>
+          <Text style={styles.cardTopRightInfo}>{topRightInfo}</Text>
         </View>
         <View style={styles.cardInfoContainer}>
           {fields.map((field, index) => (
@@ -80,8 +82,19 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.18,
     shadowRadius: 12
   },
-  cardTitleContainer: {
-    marginBottom: 12
+  cardHeaderContainer: {
+    marginBottom: 12,
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center' //TODO : mettre 'baseline' si on veut aligner par rapport au titre
+  },
+  cardTopRightInfo: {
+    color: '#9D9D9D',
+    fontSize: 12,
+    height: '100%',
+    fontWeight: '600'
   },
   cardTitle: {
     color: '#000000',

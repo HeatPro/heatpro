@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 interface AssociatedMediaCardProps {
   title: string;
-  media: { icon: string; color: string }[];
+  media: { icon: string; color?: string }[];
   width?: number;
 }
 
