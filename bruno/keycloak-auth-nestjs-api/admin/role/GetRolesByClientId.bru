@@ -1,0 +1,16 @@
+meta {
+  name: GetRolesByClientId
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base_url_keycloak}}/admin/realms/{{realm}}/clients/{{admin_client_uuid}}/roles
+  body: none
+  auth: none
+}
+
+script:pre-request {
+  const token = bru.getVar("adminToken");
+  req.setHeader("Authorization", `Bearer ${token}`);
+}

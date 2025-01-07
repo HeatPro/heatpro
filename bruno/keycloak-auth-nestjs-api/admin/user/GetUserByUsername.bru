@@ -1,0 +1,30 @@
+meta {
+  name: GetUserByUsername
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{base_url_keycloak}}/admin/realms/{{realm}}/users?first=0&max=1&username=codewithbisky@gmail.com&exact=true
+  body: json
+  auth: none
+}
+
+params:query {
+  first: 0
+  max: 1
+  username: codewithbisky@gmail.com
+  exact: true
+}
+
+body:json {
+  {
+    "firstName": "Bisky12",
+    "lastName": "Mursuid11"
+  }
+}
+
+script:pre-request {
+  const token = bru.getVar("adminToken");
+  req.setHeader("Authorization", `Bearer ${token}`);
+}

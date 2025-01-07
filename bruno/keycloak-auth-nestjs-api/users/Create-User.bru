@@ -1,0 +1,24 @@
+meta {
+  name: Create-User
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base_url}}/users
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "username": "chabangamarshall1@gmail.com",
+    "firstName": "Bisky",
+    "lastName": "Mursuid",
+    "password": "Test@1234"
+  }
+}
