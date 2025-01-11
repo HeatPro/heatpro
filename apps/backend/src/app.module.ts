@@ -8,6 +8,7 @@ import { UserModule } from './features/user/user.module';
 import { HeaterModule } from './features/heater/heater.module';
 import { PartModule } from './features/part/part.module';
 import { ProblemModule } from './features/problem/problem.module';
+import { InterventionModule } from './features/intervention/intervention.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { ProblemModule } from './features/problem/problem.module';
     HeaterModule,
     PartModule,
     ProblemModule,
+    InterventionModule
   ],
   controllers: [AppController],
   providers: [AppService],
