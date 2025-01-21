@@ -1,9 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, Schema as MongooseSchema } from 'mongoose';
-import { User } from '../user/user.schema';
-import { Problem } from '../problem/problem.schema';
-import { Part } from '../part/part.schema';
-import { Heater } from '../heater/heater.schema';
+import { Document, Schema as MongooseSchema, Types } from 'mongoose';
 import { InterventionType } from './intervention-type.enum';
 
 export type InterventionDocument = Intervention & Document;
@@ -13,17 +9,17 @@ export class Intervention {
   @Prop({ required: true, type: Date })
   date: Date;
 
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'User', required: true })
-  user: User;
+  @Prop({ type: Types.ObjectId, ref: 'User', required: true })
+  user: Types.ObjectId;
 
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Problem', required: true })
-  problem: Problem;
+  @Prop({ type: [{ type: Types.ObjectId, ref: 'Problem' }], required: true })
+  problems: Types.ObjectId[];
 
-  @Prop({ type: [{ type: MongooseSchema.Types.ObjectId, ref: 'Part' }] })
-  replacedParts: Part[];
+  @Prop({ type: [{ type: Types.ObjectId, ref: 'Part' }] })
+  replacedParts: Types.ObjectId[];
 
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Heater', required: true })
-  heater: Heater;
+  @Prop({ type: Types.ObjectId, ref: 'Heater', required: true })
+  heater: Types.ObjectId;
 
   @Prop({ required: true, enum: InterventionType })
   interventionType: InterventionType;

@@ -15,7 +15,7 @@ export class HeaterService {
 
     const existingHeater = await this.heaterModel.findOne({ serialNumber });
     if (existingHeater) {
-      throw new ConflictException('Heater with this serial number already exists');
+      return existingHeater;
     }
 
     const newHeater = new this.heaterModel(createHeaterDto);
