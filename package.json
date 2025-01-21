@@ -21,6 +21,7 @@
     "packages/*"
   ],
   "dependencies": {
+    "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "expo-local-authentication": "^15.0.1",
     "expo-secure-store": "^14.0.0",
