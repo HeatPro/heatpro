@@ -12,4 +12,8 @@ export class CreatePartDto {
   @IsNotEmpty()
   @IsString()
   reference: string;
+
+  @IsNotEmpty()
+  @IsString()
+  dataSheetFileKey: string;
 }

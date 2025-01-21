@@ -12,4 +12,8 @@ export class CreateHeaterDto {
   @IsNotEmpty()
   @IsString()
   location: string;
+
+  @IsNotEmpty()
+  @IsString()
+  dataSheetFileKey: string;
 }

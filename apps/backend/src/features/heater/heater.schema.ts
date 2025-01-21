@@ -13,6 +13,9 @@ export class Heater {
 
   @Prop({ required: true })
   location: string;
+
+  @Prop({ required: true })
+  dataSheetFileKey: string;
 }
 
 export const HeaterSchema = SchemaFactory.createForClass(Heater);

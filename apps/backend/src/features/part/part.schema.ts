@@ -13,6 +13,9 @@ export class Part {
 
   @Prop({ required: true, unique: true })
   reference: string;
+
+  @Prop({ required: true })
+  dataSheetFileKey: string;
 }
 
 export const PartSchema = SchemaFactory.createForClass(Part);
