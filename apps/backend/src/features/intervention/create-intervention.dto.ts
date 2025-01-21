@@ -1,6 +1,8 @@
-import { IsDate, IsEnum, IsMongoId, IsNotEmpty, IsArray } from 'class-validator';
+import { IsDate, IsEnum, IsMongoId, IsNotEmpty, IsArray, ValidateNested, IsOptional } from 'class-validator';
 import { InterventionType } from './intervention-type.enum';
 import { Type } from 'class-transformer';
+import { CreateProblemDto } from '../problem/problem.dto';
+import { CreatePartDto } from '../part/part.dto';
 
 export class CreateInterventionDto {
   @Type(() => Date)
@@ -14,15 +16,17 @@ export class CreateInterventionDto {
 
   @IsNotEmpty()
   @IsMongoId()
-  problemId: string;
+  heaterId: string;
+
+  @ValidateNested()
+  @Type(() => CreateProblemDto)
+  @IsNotEmpty()
+  problems: CreateProblemDto[];
 
   @IsArray()
-  @IsMongoId({ each: true })
-  replacedPartIds: string[];
-
-  @IsNotEmpty()
-  @IsMongoId()
-  heaterId: string;
+  @ValidateNested({ each: true })
+  @Type(() => CreatePartDto)
+  replacedParts: CreatePartDto[];
 
   @IsNotEmpty()
   @IsEnum(InterventionType)

@@ -52,4 +52,34 @@ export class PartService {
       throw new NotFoundException('Part not found');
     }
   }
+
+    async find(filter: any): Promise<PartDocument[]> {
+    return this.partModel.find(filter).exec();
+  }
+
+  // Add the missing findByIdAndUpdate method
+  async findByIdAndUpdate(
+    id: string,
+    updatePartDto: Partial<CreatePartDto>,
+    options: { new?: boolean } = { new: true }
+  ): Promise<PartDocument> {
+    const updatedPart = await this.partModel
+      .findByIdAndUpdate(
+        id,
+        {
+          ...(updatePartDto.name && { name: updatePartDto.name }),
+          ...(updatePartDto.image && { image: updatePartDto.image }),
+          ...(updatePartDto.reference && { reference: updatePartDto.reference }),
+          ...(updatePartDto.dataSheetFileKey && { dataSheetFileKey: updatePartDto.dataSheetFileKey }),
+        },
+        { new: options.new }
+      )
+      .exec();
+
+    if (!updatedPart) {
+      throw new NotFoundException(`Part with ID ${id} not found`);
+    }
+
+    return updatedPart;
+  }
 }
