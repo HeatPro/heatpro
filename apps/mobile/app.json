@@ -10,7 +10,9 @@
     "newArchEnabled": true,
     "ios": {
       "infoPlist": {
-        "NSFaceIDUsageDescription": "This app uses Face ID to provide a secure login experience."
+        "NSFaceIDUsageDescription": "This app uses Face ID to provide a secure login experience.",
+        "NSCameraUsageDescription": "This app needs access to your camera to scan QR codes"
+
       }
     },
     "android": {
@@ -39,6 +41,14 @@
         "expo-local-authentication",
         {
           "faceIDPermission": "Allow $(PRODUCT_NAME) to use Face ID."
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera",
+          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone",
+          "recordAudioAndroid": true
         }
       ]
     ],
