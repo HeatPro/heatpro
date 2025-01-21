@@ -6,6 +6,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserModule } from './features/user/user.module';
 import { HeaterModule } from './features/heater/heater.module';
+import { PartModule } from './features/part/part.module';
+import { ProblemModule } from './features/problem/problem.module';
 
 @Module({
   imports: [
@@ -22,6 +24,8 @@ import { HeaterModule } from './features/heater/heater.module';
     AuthModule,
     UserModule,
     HeaterModule,
+    PartModule,
+    ProblemModule,
   ],
   controllers: [AppController],
   providers: [AppService],
