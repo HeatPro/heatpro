@@ -1,7 +1,12 @@
 import React from 'react';
 import { StyleSheet, Image } from 'react-native';
 
-const Corner = ({ imgSource , style}) => {
+interface CornerProps {
+    imgSource: any;
+    style? : object;
+}
+
+const Corner = ({ imgSource , style} : CornerProps) => {
     return <Image
         source={imgSource}
         style={style ? [styles.corner, style] : styles.corner}
