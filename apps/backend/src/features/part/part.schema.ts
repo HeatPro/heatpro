@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
+import { PartType } from './part-type.enum';
 
 export type PartDocument = Part & Document<Types.ObjectId> & {
   _id: Types.ObjectId;
@@ -18,6 +19,9 @@ export class Part {
 
   @Prop({ required: true })
   dataSheetFileKey: string;
+
+  @Prop({ required: true })
+  type: PartType;
 }
 
 export const PartSchema = SchemaFactory.createForClass(Part);

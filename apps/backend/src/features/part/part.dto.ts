@@ -1,4 +1,5 @@
-import { IsString, IsNotEmpty } from 'class-validator';
+import { IsString, IsNotEmpty, IsEnum } from 'class-validator';
+import { PartType } from './part-type.enum';
 
 export class CreatePartDto {
   @IsNotEmpty()
@@ -16,4 +17,8 @@ export class CreatePartDto {
   @IsNotEmpty()
   @IsString()
   dataSheetFileKey: string;
+
+  @IsNotEmpty()
+  @IsEnum(PartType)
+  type: PartType;
 }
