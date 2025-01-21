@@ -1501,10 +1501,10 @@
   resolved "https://registry.npmjs.org/@expo/metro-runtime/-/metro-runtime-4.0.0.tgz"
   integrity sha512-+zgCyuXqIzgZVN8h0g36sursGXBy3xqtJW9han7t/iR2HTTrrbEoep5ftW1a27bdSINU96ng+rSsPLbyHYeBvw==
 
-"@expo/ngrok-bin-linux-x64@2.3.41":
+"@expo/ngrok-bin-win32-x64@2.3.41":
   version "2.3.41"
-  resolved "https://registry.npmjs.org/@expo/ngrok-bin-linux-x64/-/ngrok-bin-linux-x64-2.3.41.tgz"
-  integrity sha512-LcU3MbYHv7Sn2eFz8Yzo2rXduufOvX1/hILSirwCkH+9G8PYzpwp2TeGqVWuO+EmvtBe6NEYwgdQjJjN6I4L1A==
+  resolved "https://registry.npmjs.org/@expo/ngrok-bin-win32-x64/-/ngrok-bin-win32-x64-2.3.41.tgz"
+  integrity sha512-mncsPRaG462LiYrM8mQT8OYe3/i44m3N/NzUeieYpGi8+pCOo8TIC23kR9P93CVkbM9mmXsy3X6hq91a8FWBdA==
 
 "@expo/ngrok-bin@2.3.42":
   version "2.3.42"
@@ -3663,7 +3663,7 @@ babel-preset-jest@^29.6.3:
     babel-plugin-jest-hoist "^29.6.3"
     babel-preset-current-node-syntax "^1.0.0"
 
-"backend@file:/home/dbana/school/si5/heatpro/apps/backend":
+"backend@file:C:\\Users\\elias\\OneDrive\\Bureau\\heatpro\\apps\\backend":
   version "0.0.1"
   resolved "file:apps/backend"
   dependencies:
@@ -5245,10 +5245,24 @@ expo-asset@~11.0.1:
     invariant "^2.2.4"
     md5-file "^3.2.3"
 
+expo-barcode-scanner@^13.0.1:
+  version "13.0.1"
+  resolved "https://registry.npmjs.org/expo-barcode-scanner/-/expo-barcode-scanner-13.0.1.tgz"
+  integrity sha512-xBGLT1An2gpAMIQRTLU3oHydKohX8r8F9/ait1Fk9Vgd0GraFZbP4IiT7nHMlaw4H6E7Muucf7vXpGV6u7d4HQ==
+  dependencies:
+    expo-image-loader "~4.7.0"
+
 expo-blur@~14.0.1:
   version "14.0.1"
   resolved "https://registry.npmjs.org/expo-blur/-/expo-blur-14.0.1.tgz"
   integrity sha512-3Q6jFBLbY8n2vwk28ycUC+eIlVhnlqwkXUKk/Lfaj+SGV3AZMQyrixe7OYwJdUfwqETBrnYYMB6uNrJzOSbG+g==
+
+expo-camera@^16.0.10:
+  version "16.0.10"
+  resolved "https://registry.npmjs.org/expo-camera/-/expo-camera-16.0.10.tgz"
+  integrity sha512-CKvC9dhBuR7VkuwXsBya+Ok2h97z9t7EefkP5sZNdPXZYab8K/zxcisGJZG6/mjCVqzHIftvCb3GxJtuRrDIBQ==
+  dependencies:
+    invariant "^2.2.4"
 
 expo-constants@*, expo-constants@~17.0.0, expo-constants@~17.0.3:
   version "17.0.3"
@@ -5276,6 +5290,11 @@ expo-haptics@~14.0.0:
   version "14.0.0"
   resolved "https://registry.npmjs.org/expo-haptics/-/expo-haptics-14.0.0.tgz"
   integrity sha512-5tYJN+2axYF22BtG1elBQAV1aZPUOCtr9sItClfm4jDoekGiPCxZG/nylcA3DVh2bUHMSll4Y98qjFFFhwZ1Cw==
+
+expo-image-loader@~4.7.0:
+  version "4.7.0"
+  resolved "https://registry.npmjs.org/expo-image-loader/-/expo-image-loader-4.7.0.tgz"
+  integrity sha512-cx+MxxsAMGl9AiWnQUzrkJMJH4eNOGlu7XkLGnAXSJrRoIiciGaKqzeaD326IyCTV+Z1fXvIliSgNW+DscvD8g==
 
 expo-keep-awake@~14.0.1:
   version "14.0.1"
@@ -7405,15 +7424,10 @@ lighthouse-logger@^1.0.0:
     debug "^2.6.9"
     marky "^1.2.2"
 
-lightningcss-linux-x64-gnu@1.27.0:
+lightningcss-win32-x64-msvc@1.27.0:
   version "1.27.0"
-  resolved "https://registry.npmjs.org/lightningcss-linux-x64-gnu/-/lightningcss-linux-x64-gnu-1.27.0.tgz"
-  integrity sha512-Dk/jovSI7qqhJDiUibvaikNKI2x6kWPN79AQiD/E/KeQWMjdGe9kw51RAgoWFDi0coP4jinaH14Nrt/J8z3U4A==
-
-lightningcss-linux-x64-musl@1.27.0:
-  version "1.27.0"
-  resolved "https://registry.npmjs.org/lightningcss-linux-x64-musl/-/lightningcss-linux-x64-musl-1.27.0.tgz"
-  integrity sha512-QKjTxXm8A9s6v9Tg3Fk0gscCQA1t/HMoF7Woy1u68wCk5kS4fR+q3vXa1p3++REW784cRAtkYKrPy6JKibrEZA==
+  resolved "https://registry.npmjs.org/lightningcss-win32-x64-msvc/-/lightningcss-win32-x64-msvc-1.27.0.tgz"
+  integrity sha512-/OJLj94Zm/waZShL8nB5jsNj3CfNATLCTyFxZyouilfTmSoLDX7VlVAmhPHoZWVFp4vdmoiEbPEYC8HID3m6yw==
 
 lightningcss@~1.27.0:
   version "1.27.0"
@@ -8067,7 +8081,7 @@ mkdirp@^1.0.4:
   resolved "https://registry.npmjs.org/mkdirp/-/mkdirp-1.0.4.tgz"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
 
-"mobile@file:/home/dbana/school/si5/heatpro/apps/mobile":
+"mobile@file:C:\\Users\\elias\\OneDrive\\Bureau\\heatpro\\apps\\mobile":
   version "1.0.0"
   resolved "file:apps/mobile"
   dependencies:
@@ -8825,7 +8839,7 @@ prompts@^2.0.1, prompts@^2.2.1, prompts@^2.3.2:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.7.2, prop-types@^15.8.1:
+prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -9026,6 +9040,13 @@ react-is@^16.7.0:
   resolved "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
+react-native-camera@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.npmjs.org/react-native-camera/-/react-native-camera-4.2.1.tgz"
+  integrity sha512-+Vkql24PFYQfsPRznJCvPwJQfyzCnjlcww/iZ4Ej80bgivKjL9eU0IMQIXp4yi6XCrKi4voWXxIDPMupQZKeIQ==
+  dependencies:
+    prop-types "^15.6.2"
+
 react-native-gesture-handler@~2.20.2:
   version "2.20.2"
   resolved "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-2.20.2.tgz"
@@ -9087,6 +9108,11 @@ react-native-vector-icons@^10.2.0:
   dependencies:
     prop-types "^15.7.2"
     yargs "^16.1.1"
+
+react-native-vision-camera@^4.6.3:
+  version "4.6.3"
+  resolved "https://registry.npmjs.org/react-native-vision-camera/-/react-native-vision-camera-4.6.3.tgz"
+  integrity sha512-fVHww4cNFrxvMYOlUZcjl3iYmR3vcUtvLZKW9NHlKZ3o4zsspwYjbw2vheZvHrHtJ30OrE3N2NFqT6CxgPvRCw==
 
 react-native-web@*, react-native-web@~0.19.13:
   version "0.19.13"
@@ -10495,15 +10521,15 @@ tslib@^2.0.1, tslib@^2.1.0, tslib@^2.4.0, tslib@^2.6.2, tslib@2.8.1:
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.8.1.tgz"
   integrity sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==
 
-turbo-linux-64@2.3.3:
-  version "2.3.3"
-  resolved "https://registry.npmjs.org/turbo-linux-64/-/turbo-linux-64-2.3.3.tgz"
-  integrity sha512-eHj9OIB0dFaP6BxB88jSuaCLsOQSYWBgmhy2ErCu6D2GG6xW3b6e2UWHl/1Ho9FsTg4uVgo4DB9wGsKa5erjUA==
-
 turbo-stream@2.4.0:
   version "2.4.0"
   resolved "https://registry.npmjs.org/turbo-stream/-/turbo-stream-2.4.0.tgz"
   integrity sha512-FHncC10WpBd2eOmGwpmQsWLDoK4cqsA/UT/GqNoaKOQnT8uzhtCbg3EoUDMvqpOSAI0S26mr0rkjzbOO6S3v1g==
+
+turbo-windows-64@2.3.3:
+  version "2.3.3"
+  resolved "https://registry.npmjs.org/turbo-windows-64/-/turbo-windows-64-2.3.3.tgz"
+  integrity sha512-O2+BS4QqjK3dOERscXqv7N2GXNcqHr9hXumkMxDj/oGx9oCatIwnnwx34UmzodloSnJpgSqjl8iRWiY65SmYoQ==
 
 turbo@^2.3.3:
   version "2.3.3"
