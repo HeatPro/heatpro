@@ -41,7 +41,7 @@ export default function HomePageScreen() {
         <CustomButton
           title="Générer un QR Code"
           onPress={handleQRCodeGeneration}
-          style={styles.actionButton}
+          style={[styles.actionButton, styles.bottomActionButton]}
           textStyle={styles.actionButtonText}
         />
       </View>
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   actionButtonsContainer: {
-    width: '100%',
+    width: '90%',
     alignItems: 'center'
   },
   actionButton: {
@@ -94,7 +94,14 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 3},
     shadowColor: '#000000',
     shadowRadius: 12,
-    shadowOpacity: 0.7
+    shadowOpacity: 0.7,
+    flex: 1,
+    fontSize: 20,
+    paddingVertical: 12,
+    justifyContent: 'center',
+  },
+  bottomActionButton: {
+    marginTop: 36
   },
   actionButtonText: {
     color: '#657DDF',

@@ -159,6 +159,14 @@ const styles = StyleSheet.create({
     width: '90%',
     borderRadius: 40,
     backgroundColor: '#4E60AB',
+    fontSize: 20,
+    paddingVertical: 12,
+    justifyContent: 'center',
+    marginTop: 16,
+    shadowOffset: { width: 0, height: 3},
+    shadowColor: '#000000',
+    shadowRadius: 4,
+    shadowOpacity: 0.3,
   },
   disconnectButtonText: {
     fontSize: 22

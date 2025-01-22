@@ -42,10 +42,21 @@ export function HeaderFicheTechniqueIntervention({
   return (
     <View style={styles.container}>
       <View style={styles.firstRow}>
-        <Icon name={leftIcon.iconName} size={leftIcon.iconSize ? leftIcon.iconSize : 24} color="#FFFFFF" />
+        <Icon
+          style={styles.leftIcon}
+          name={leftIcon.iconName}
+          size={leftIcon.iconSize ? leftIcon.iconSize : 24}
+          color="#FFFFFF"
+        />
         <Text style={styles.title}>{title}</Text>
-        <Icon name={rightIcon.iconName} size={rightIcon.iconSize ? rightIcon.iconSize : 24} color="#FFFFFF" />
+        <Icon
+          style={styles.rightIcon}
+          name={rightIcon.iconName}
+          size={rightIcon.iconSize ? rightIcon.iconSize : 24}
+          color="#FFFFFF"
+        />
       </View>
+
       <View style={styles.secondRow}>
         {indexSelectedMenu == 0 ?
           <View style={[styles.menuElement, styles.menuElementSelected, styles.firstMenu]}>
@@ -95,9 +106,15 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     width: '100%',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 12
+  },
+  leftIcon: {
+    marginLeft: '10%'
+  },
+  rightIcon: {
+    marginRight: '10%'
   },
   secondRow: {
     display: 'flex',
@@ -115,15 +132,16 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 0, height: 2 }
   },
   menuElement: {
-    paddingVertical: 6,
-    borderRadius: 46,
+    paddingVertical: 8,
+    paddingHorizontal: 3,
+    borderRadius: 47,
     flex: 1
   },
   menuElementSelected: {
     backgroundColor: '#748BE8'
   },
   menuElementText: {
-    fontSize: 12,
+    fontSize: 13,
     color: '#FFFFFF',
     textAlign: 'center'
   },

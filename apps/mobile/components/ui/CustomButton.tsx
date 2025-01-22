@@ -19,11 +19,8 @@ export function CustomButton({ title, onPress, style, textStyle }: CustomButtonP
 const styles = StyleSheet.create({
   button: {
     backgroundColor: '#43439f',
-    borderRadius: 10,
-    padding: 15,
     width: '100%',
-    alignItems: 'center',
-    marginVertical: 10,
+    alignItems: 'center'
   },
   buttonText: {
     color: '#FFFFFF',

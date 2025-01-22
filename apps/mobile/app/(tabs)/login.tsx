@@ -191,6 +191,7 @@ export default function LoginScreen() {
 
         <CustomButton
           title="Connexion"
+          style={styles.connectionButton}
           onPress={handleLogin}
         />
 
@@ -259,6 +260,14 @@ const styles = StyleSheet.create({
   forgotPassword: {
     color: '#FFFFFF',
     fontSize: 14,
+  },
+  connectionButton: {
+    flex: 1,
+    fontSize: 20,
+    borderRadius: 40,
+    paddingVertical: 12,
+    justifyContent: 'center',
+    backgroundColor: '#4E60AB',
   },
   separator: {
     width: '100%',
