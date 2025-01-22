@@ -3690,7 +3690,7 @@ babel-preset-jest@^29.6.3:
     babel-plugin-jest-hoist "^29.6.3"
     babel-preset-current-node-syntax "^1.0.0"
 
-"backend@file:C:\\Users\\elias\\OneDrive\\Bureau\\heatpro\\apps\\backend":
+"backend@file:C:\\Users\\Michel K\\Desktop\\Polytech\\SI5\\SI5-IHM\\CCPS\\Projet\\heatpro\\apps\\backend":
   version "0.0.1"
   resolved "file:apps/backend"
   dependencies:
@@ -8148,7 +8148,7 @@ mkdirp@^1.0.4:
   resolved "https://registry.npmjs.org/mkdirp/-/mkdirp-1.0.4.tgz"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
 
-"mobile@file:C:\\Users\\elias\\OneDrive\\Bureau\\heatpro\\apps\\mobile":
+"mobile@file:C:\\Users\\Michel K\\Desktop\\Polytech\\SI5\\SI5-IHM\\CCPS\\Projet\\heatpro\\apps\\mobile":
   version "1.0.0"
   resolved "file:apps/mobile"
   dependencies:
