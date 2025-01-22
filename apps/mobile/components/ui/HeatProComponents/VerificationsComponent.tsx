@@ -2,21 +2,24 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const VerificationCardComponent = ({ verifications }) => {
+const VerificationCardComponent = ({ title, verifications, IfEmptyMessage }) => {
 
   return (
     <View style={styles.container}>
       <View style={styles.card}>
         <View style={styles.cardTitleContainer}>
-          <Text style={styles.cardTitle}>Verifications effectuées</Text>
+          <Text style={styles.cardTitle}>{title ? title : 'Verifications effectuées'}</Text>
         </View>
         <View style={styles.cardInfoContainer}>
-          {verifications.map((field, index) => (
-            <View style={styles.infoRow} key={index}>
-              <Icon name="check-circle" size={24} color="#4ff555" style={styles.icon} />
-              <Text style={styles.cardInfo}>{field}</Text>
-            </View>
-          ))}
+          {verifications.length === 0 ? (
+              <Text style={styles.emptyMessage}>{IfEmptyMessage}</Text>
+            ) :
+            verifications.map((field, index) => (
+              <View style={styles.infoRow} key={index}>
+                <Icon name="check-circle" size={24} color="#4ff555" style={styles.icon} />
+                <Text style={styles.cardInfo}>{field}</Text>
+              </View>
+            ))}
         </View>
       </View>
     </View>
@@ -81,6 +84,13 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginRight: 12
+  },
+  emptyMessage: {
+    color: '#454343',
+    fontSize: 16,
+    fontWeight: '500',
+    textAlign: 'center',
+    width: '100%'
   }
 });
 

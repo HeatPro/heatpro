@@ -88,9 +88,12 @@ const InterventionSlider = () => {
         <InterventionCardComponent title="Informations générales" fields={fields} />
         <InterventionCardComponent title="Technicien intervenu" fields={fieldsTechnician} />
         <SignaledProblemCard problems={problems}></SignaledProblemCard>
-        <VerificationsComponent verifications={verifications}></VerificationsComponent>
-        <PartsCardComponent title="Pièces remplacées" parts={parts}></PartsCardComponent>
-        <PartsCardComponent title="Pièces commandées" parts={parts}></PartsCardComponent>
+        <VerificationsComponent verifications={verifications}
+                                IfEmptyMessage={'Aucune vérification effectuée'}></VerificationsComponent>
+        <PartsCardComponent title="Pièces remplacées" parts={parts}
+                            IfEmptyMessage={'Aucune pièce remplacée'}></PartsCardComponent>
+        <PartsCardComponent title="Pièces commandées" parts={parts}
+                            IfEmptyMessage={'Aucune pièce commandée'}></PartsCardComponent>
         <CommentCard title="Commentaires" comment={comment}></CommentCard>
         <AssociatedMediaCard title="Media associés" media={media}></AssociatedMediaCard>
       </View>

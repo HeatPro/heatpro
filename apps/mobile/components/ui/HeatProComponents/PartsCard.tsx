@@ -11,10 +11,10 @@ export interface Part {
 interface PartsCardComponentProps {
   title: string;
   parts: Part[];
+  IfEmptyMessage: string;
 }
 
-const PartsCardComponent: React.FC<PartsCardComponentProps> = ({ title, parts }) => {
-
+const PartsCardComponent: React.FC<PartsCardComponentProps> = ({ title, parts, IfEmptyMessage }) => {
   return (
     <View style={styles.container}>
       <View style={styles.card}>
@@ -22,16 +22,19 @@ const PartsCardComponent: React.FC<PartsCardComponentProps> = ({ title, parts })
           <Text style={styles.cardTitle}>{title}</Text>
         </View>
         <View style={styles.cardInfoContainer}>
-          {parts.map((field, index) => (
-            <View style={styles.infoRow} key={index}>
-              <Icon name="check-circle" size={48} color="#4ff555" style={styles.icon} />
-              <View style={styles.partInfos}>
-                <Text style={[styles.cardInfo, styles.cardInfoMargin]}>{field.name}</Text>
-                <Text style={styles.cardInfo}>RÉF : {field.ref}</Text>
+          {parts.length === 0 ? (
+            <Text style={styles.emptyMessage}>{IfEmptyMessage}</Text>
+          ) : (
+            parts.map((field, index) => (
+              <View style={styles.infoRow} key={index}>
+                <Icon name="check-circle" size={48} color="#4ff555" style={styles.icon} />
+                <View style={styles.partInfos}>
+                  <Text style={[styles.cardInfo, styles.cardInfoMargin]}>{field.name}</Text>
+                  <Text style={styles.cardInfo}>RÉF : {field.ref}</Text>
+                </View>
               </View>
-
-            </View>
-          ))}
+            ))
+          )}
         </View>
       </View>
     </View>
@@ -98,6 +101,13 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginRight: 12
+  },
+  emptyMessage: {
+    color: '#454343',
+    fontSize: 16,
+    fontWeight: '500',
+    textAlign: 'center',
+    width: '100%'
   }
 });
 
