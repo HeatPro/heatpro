@@ -1,5 +1,5 @@
-import React from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import React, { useState } from 'react';
+import { Modal, ScrollView, StyleSheet, View } from 'react-native';
 import SignaledProblemCard, { Problem } from '@/components/ui/HeatProComponents/SignaledProblemCard';
 import VerificationsComponent from '@/components/ui/HeatProComponents/VerificationsComponent';
 import PartsCardComponent, { Part } from '@/components/ui/HeatProComponents/PartsCard';
@@ -10,6 +10,7 @@ import {
   IconProps
 } from '@/components/ui/HeatProComponents/headers/HeaderFicheTechniqueIntervention';
 import { CustomButton } from '@/components/ui/CustomButton';
+import ModaleComponent from '@/components/ui/HeatProComponents/ModaleComponent';
 
 const InterventionFormVisualisationPage = () => {
 
@@ -30,7 +31,23 @@ const InterventionFormVisualisationPage = () => {
 
   const onFormValidation = () => {
     console.log('Valider une intervention');
+    openModal();
   };
+
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const openModal = () => {
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
+  const confirmValidation = () => {
+    closeModal();
+    //TODO: send request to save intervention
+  }
 
   return (
     <View style={styles.parentContainer}>
@@ -50,6 +67,22 @@ const InterventionFormVisualisationPage = () => {
                                IfEmptyMessage={'Pas de media associés'}></AssociatedMediaCard>
           <CustomButton title={'Valider le formulaire'} style={styles.validationButton}
                         onPress={onFormValidation}></CustomButton>
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={isModalVisible}
+            onRequestClose={closeModal}
+          >
+            <View style={styles.modalContainer}>
+              <ModaleComponent title={'Valider le formulaire ?'}
+                               description={'Êtes-vous sûr de vouloir valider le formulaire et terminer l’intervention en cours ?'}
+                               leftButtonText={'Annuler'}
+                               rightButtonText={'Valider'}
+                               onPressLeftButton={closeModal}
+                               onPressRightButton={confirmValidation}>
+              </ModaleComponent>
+            </View>
+          </Modal>
         </View>
       </ScrollView>
     </View>
@@ -65,8 +98,13 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     width: '100%',
     alignItems: 'center',
+    justifyContent: 'center'
+  },
+  modalContainer: {
+    flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#FFFFFF'
+    alignItems: 'center',
+    backgroundColor: '#F7F7F8ED'
   },
   scrollContent: {
     flexGrow: 1,
