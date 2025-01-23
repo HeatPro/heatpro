@@ -2,7 +2,7 @@ import React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import InterventionCardComponent, { Field } from '@/components/ui/HeatProComponents/InfoCard';
 
-const InterventionSlider = () => {
+const InterventionSlider = ({ navigation }) => {
 
   const fields: Field[] = [
     {
@@ -40,17 +40,29 @@ const InterventionSlider = () => {
     }
   ];
 
+  const accessInterventionPage = () => {
+    navigation.navigate('DetailsIntervention');
+  };
+
   return (
-    <ScrollView contentContainerStyle={styles.scrollContent}>
-      <View style={styles.container}>
-        <InterventionCardComponent title="Maintenance corrective" fields={fields} topRightInfo="Mardi 12 Sept. 2024" />
-        <InterventionCardComponent title="Maintenance corrective" fields={fields} topRightInfo="Mardi 12 Sept. 2024" />
-        <InterventionCardComponent title="Maintenance corrective" fields={fields} topRightInfo="Mardi 12 Sept. 2024" />
-        <InterventionCardComponent title="Maintenance corrective" fields={fields} topRightInfo="Mardi 12 Sept. 2024" />
-        <InterventionCardComponent title="Maintenance corrective" fields={fields} topRightInfo="Mardi 12 Sept. 2024" />
-        <InterventionCardComponent title="Maintenance corrective" fields={fields} topRightInfo="Mardi 12 Sept. 2024" />
-      </View>
-    </ScrollView>
+    <>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <View style={styles.container}>
+          <InterventionCardComponent title="Maintenance corrective" fields={fields} topRightInfo="Mardi 12 Sept. 2024"
+                                     onPress={accessInterventionPage} />
+          <InterventionCardComponent title="Maintenance corrective" fields={fields} topRightInfo="Mardi 12 Sept. 2024"
+                                     onPress={accessInterventionPage} />
+          <InterventionCardComponent title="Maintenance corrective" fields={fields} topRightInfo="Mardi 12 Sept. 2024"
+                                     onPress={accessInterventionPage} />
+          <InterventionCardComponent title="Maintenance corrective" fields={fields} topRightInfo="Mardi 12 Sept. 2024"
+                                     onPress={accessInterventionPage} />
+          <InterventionCardComponent title="Maintenance corrective" fields={fields} topRightInfo="Mardi 12 Sept. 2024"
+                                     onPress={accessInterventionPage} />
+          <InterventionCardComponent title="Maintenance corrective" fields={fields} topRightInfo="Mardi 12 Sept. 2024"
+                                     onPress={accessInterventionPage} />
+        </View>
+      </ScrollView>
+    </>
   );
 };
 

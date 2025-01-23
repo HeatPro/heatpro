@@ -1,60 +1,89 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { NavigationBarItem } from '@/components/ui/HeatProComponents/NavigationBarItem';
+import { HeatProRoutes } from '@/app/_layout';
 
-export interface NavigationBarTabs { // TODO : use this to inject every title of tab & redirection to the right component
+export interface NavigationBarTabs {
   title: string;
   component: string;
 }
 
 interface NavigationBarProps {
   navBarWidth: string;
-
+  navigationBarTabs?: NavigationBarTabs[];
+  currentRouteName: string;
+  navigation: any;
 }
 
-const NavigationBarComponent = ({ navBarWidth }: NavigationBarProps) => {
+const NavigationBarComponent = ({
+                                  navBarWidth,
+                                  navigationBarTabs,
+                                  currentRouteName,
+                                  navigation
+                                }: NavigationBarProps) => {
 
   const [indexSelectedNavigationBarItem, setIndexSelectedNavigationBarItem] = useState(0);
 
+  const defaultNavigationBarItems = [
+    { title: 'Historique', component: HeatProRoutes.HistoriqueIntervention },
+    { title: 'Fiche technique', component: HeatProRoutes.Specification },
+    { title: 'Formulaire', component: HeatProRoutes.InterventionFormVisualisationPage }
+  ];
+
+  const visibleRoutes = ['HomePage', 'Profile', 'HistoriqueIntervention', 'DetailsIntervention', 'Specification', 'InterventionFormVisualisationPage'];
+
+  if (!visibleRoutes.includes(currentRouteName)) {
+    return null;
+  }
+
+  const navigationTabs = navigationBarTabs?.length == 3 ? navigationBarTabs : defaultNavigationBarItems;
+
   const onPressVerification = (index: number) => {
     setIndexSelectedNavigationBarItem(index);
+    navigation.navigate(navigationTabs[index].component);
   };
 
   return (
     <View style={[styles.container, { width: navBarWidth }]}>
 
       {indexSelectedNavigationBarItem == 0 ?
-        <NavigationBarItem title="Historique"
+        <NavigationBarItem title={navigationTabs[0].title}
                            onPress={() => onPressVerification(0)}
                            iconName="assignment" iconSize={32}
-                           style={styles.navbarElement} iconColor="#657DDF" textStyle={styles.navbarTextSelected}></NavigationBarItem>
+                           style={styles.navbarElement} iconColor="#657DDF"
+                           textStyle={styles.navbarTextSelected}></NavigationBarItem>
         :
-        <NavigationBarItem title="Historique"
+        <NavigationBarItem title={navigationTabs[0].title}
                            onPress={() => onPressVerification(0)}
                            iconName="assignment" iconSize={32}
-                           style={styles.navbarElement} iconColor="#9D9D9D" textStyle={styles.navbarText}></NavigationBarItem>
+                           style={styles.navbarElement} iconColor="#9D9D9D"
+                           textStyle={styles.navbarText}></NavigationBarItem>
       }
       {indexSelectedNavigationBarItem == 1 ?
-        <NavigationBarItem title="Historique"
+        <NavigationBarItem title={navigationTabs[1].title}
                            onPress={() => onPressVerification(1)}
                            iconName="assignment" iconSize={32}
-                           style={styles.navbarElement} iconColor="#657DDF" textStyle={styles.navbarTextSelected} ></NavigationBarItem>
+                           style={styles.navbarElement} iconColor="#657DDF"
+                           textStyle={styles.navbarTextSelected}></NavigationBarItem>
         :
-        <NavigationBarItem title="Historique"
+        <NavigationBarItem title={navigationTabs[1].title}
                            onPress={() => onPressVerification(1)}
                            iconName="assignment" iconSize={32}
-                           style={styles.navbarElement} iconColor="#9D9D9D" textStyle={styles.navbarText}></NavigationBarItem>
+                           style={styles.navbarElement} iconColor="#9D9D9D"
+                           textStyle={styles.navbarText}></NavigationBarItem>
       }
       {indexSelectedNavigationBarItem == 2 ?
-        <NavigationBarItem title="Historique"
+        <NavigationBarItem title={navigationTabs[2].title}
                            onPress={() => onPressVerification(2)}
                            iconName="assignment" iconSize={32}
-                           style={styles.navbarElement} iconColor="#657DDF" textStyle={styles.navbarTextSelected}></NavigationBarItem>
+                           style={styles.navbarElement} iconColor="#657DDF"
+                           textStyle={styles.navbarTextSelected}></NavigationBarItem>
         :
-        <NavigationBarItem title="Historique"
+        <NavigationBarItem title={navigationTabs[2].title}
                            onPress={() => onPressVerification(2)}
                            iconName="assignment" iconSize={32}
-                           style={styles.navbarElement} iconColor="#9D9D9D" textStyle={styles.navbarText}></NavigationBarItem>
+                           style={styles.navbarElement} iconColor="#9D9D9D"
+                           textStyle={styles.navbarText}></NavigationBarItem>
       }
     </View>
   );

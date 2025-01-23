@@ -5,11 +5,20 @@ import {
   IconProps
 } from '@/components/ui/HeatProComponents/headers/HeaderFicheTechniqueIntervention';
 import PartsCardComponent, { Part } from '@/components/ui/HeatProComponents/PartsCard';
+import { HeatProRoutes } from '@/app/_layout';
 
-const SpecificationPage = () => {
+const SpecificationPage = ({ navigation }) => {
 
-  const leftIcon: IconProps = { iconName: 'person' };
-  const rightIcon: IconProps = { iconName: 'logout' };
+  const onProfilePress = () => {
+    navigation.navigate(HeatProRoutes.Profile);
+  };
+
+  const onDisconnectPress = () => {
+    navigation.navigate(HeatProRoutes.Profile);
+  };
+
+  const leftIcon: IconProps = { iconName: 'person', onPress: onProfilePress };
+  const rightIcon: IconProps = { iconName: 'logout', onPress: onDisconnectPress };
 
   const parts: Part[] = [
     { name: 'Rotor de pompe à circulation', ref: '829294949500' },

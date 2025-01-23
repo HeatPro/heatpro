@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 export interface ValueIcon {
   icon: string;
@@ -18,43 +19,57 @@ interface InterventionCardComponentProps {
   title: string;
   fields: Field[];
   topRightInfo?: string;
+  onPress?: () => void;
 }
 
-const InterventionCardComponent: React.FC<InterventionCardComponentProps> = ({ title, fields, topRightInfo }) => {
+const InterventionCardComponent: React.FC<InterventionCardComponentProps> = ({
+                                                                               title,
+                                                                               fields,
+                                                                               topRightInfo,
+                                                                               onPress
+                                                                             }) => {
 
   return (
-    <View style={styles.container}>
-      <View style={styles.card}>
-        <View style={styles.cardHeaderContainer}>
-          <Text style={styles.cardTitle}>{title}</Text>
-          <Text style={styles.cardTopRightInfo}>{topRightInfo}</Text>
-        </View>
-        <View style={styles.cardInfoContainer}>
-          {fields.map((field, index) => (
-            <View style={styles.infoRow} key={index}>
-              <Icon name={field.icon.icon} size={24} color={field.icon.color} style={styles.icon} />
-              <Text style={styles.cardInfo}>{field.label}</Text>
-              <View style={styles.dottedLine} />
-              {field.valueIcon?.icon ? (
-                <Icon
-                  name={field.valueIcon?.icon}
-                  size={20}
-                  color={field.valueIcon?.color}
-                />
-              ) : (
-                <Text style={styles.cardValue}>
-                  {field.value}
-                </Text>
-              )}
+    <View style={styles.parentContainer}>
+      <TouchableWithoutFeedback onPress={onPress}>
+        <View style={styles.container}>
+          <View style={styles.card}>
+            <View style={styles.cardHeaderContainer}>
+              <Text style={styles.cardTitle}>{title}</Text>
+              <Text style={styles.cardTopRightInfo}>{topRightInfo}</Text>
             </View>
-          ))}
+            <View style={styles.cardInfoContainer}>
+              {fields.map((field, index) => (
+                <View style={styles.infoRow} key={index}>
+                  <Icon name={field.icon.icon} size={24} color={field.icon.color} style={styles.icon} />
+                  <Text style={styles.cardInfo}>{field.label}</Text>
+                  <View style={styles.dottedLine} />
+                  {field.valueIcon?.icon ? (
+                    <Icon
+                      name={field.valueIcon?.icon}
+                      size={20}
+                      color={field.valueIcon?.color}
+                    />
+                  ) : (
+                    <Text style={styles.cardValue}>
+                      {field.value}
+                    </Text>
+                  )}
+                </View>
+              ))}
+            </View>
+          </View>
         </View>
-      </View>
+      </TouchableWithoutFeedback>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  parentContainer: {
+    display: 'flex',
+    width: '100%'
+  },
   container: {
     display: 'flex',
     flexDirection: 'column',
