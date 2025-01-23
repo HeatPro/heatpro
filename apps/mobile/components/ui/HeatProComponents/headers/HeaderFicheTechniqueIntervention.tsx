@@ -47,6 +47,7 @@ export function HeaderFicheTechniqueIntervention({
           name={leftIcon.iconName}
           size={leftIcon.iconSize ? leftIcon.iconSize : 24}
           color="#FFFFFF"
+          onPress={leftIcon.onPress}
         />
         <Text style={styles.title}>{title}</Text>
         <Icon
@@ -54,6 +55,7 @@ export function HeaderFicheTechniqueIntervention({
           name={rightIcon.iconName}
           size={rightIcon.iconSize ? rightIcon.iconSize : 24}
           color="#FFFFFF"
+          onPress={rightIcon.onPress}
         />
       </View>
 

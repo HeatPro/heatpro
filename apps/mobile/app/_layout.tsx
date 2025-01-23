@@ -15,7 +15,7 @@ import InterventionPage from '@/app/(tabs)/InterventionPage';
 import { View } from 'react-native';
 import NavigationBar from '@/components/ui/HeatProComponents/NavigationBar';
 import { useNavigationState } from '@react-navigation/native';
-import SpecificationPage from '@/app/(tabs)/specifications-page';
+import SpecificationPage from '@/app/(tabs)/SpecificationsPage';
 import InterventionFormVisualisationPage from '@/app/(tabs)/InterventionFormVisualisationPage';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.

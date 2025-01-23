@@ -11,11 +11,20 @@ import {
 } from '@/components/ui/HeatProComponents/headers/HeaderFicheTechniqueIntervention';
 import { CustomButton } from '@/components/ui/CustomButton';
 import ModaleComponent from '@/components/ui/HeatProComponents/ModaleComponent';
+import { HeatProRoutes } from '@/app/_layout';
 
-const InterventionFormVisualisationPage = () => {
+const InterventionFormVisualisationPage = ({ navigation }) => {
 
-  const leftIcon: IconProps = { iconName: 'person' };
-  const rightIcon: IconProps = { iconName: 'logout' };
+  const onProfilePress = () => {
+    navigation.navigate(HeatProRoutes.Profile);
+  };
+
+  const onDisconnectPress = () => {
+    navigation.navigate(HeatProRoutes.Login);
+  };
+
+  const leftIcon: IconProps = { iconName: 'person', onPress: onProfilePress };
+  const rightIcon: IconProps = { iconName: 'logout', onPress: onDisconnectPress };
 
   const problems: Problem[] = [];
 
@@ -47,7 +56,7 @@ const InterventionFormVisualisationPage = () => {
   const confirmValidation = () => {
     closeModal();
     //TODO: send request to save intervention
-  }
+  };
 
   return (
     <View style={styles.parentContainer}>
