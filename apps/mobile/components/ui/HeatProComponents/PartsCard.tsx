@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
   },
   cardInfo: {
     color: '#454343',
-    fontSize: 16,
+    fontSize: 12,
     fontWeight: '500'
   },
   infoRow: {
