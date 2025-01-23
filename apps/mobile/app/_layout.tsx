@@ -1,7 +1,7 @@
 import { useFonts } from 'expo-font';
 import { Stack, useNavigation } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
@@ -14,7 +14,9 @@ import InterventionListPage from '@/app/(tabs)/InterventionListPage';
 import InterventionPage from '@/app/(tabs)/InterventionPage';
 import { View } from 'react-native';
 import NavigationBar from '@/components/ui/HeatProComponents/NavigationBar';
-import { NavigationContainer, useNavigationState } from '@react-navigation/native';
+import { useNavigationState } from '@react-navigation/native';
+import SpecificationPage from '@/app/(tabs)/specifications-page';
+import InterventionFormVisualisationPage from '@/app/(tabs)/InterventionFormVisualisationPage';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -38,33 +40,34 @@ export default function RootLayout() {
   const Stack = createNativeStackNavigator();
 
 
-
   return (
-      <IPProvider>
-        <View style={{ flex: 1 }}>
-          <Stack.Navigator
-            screenOptions={{
-              headerShown: false
-            }}
-          >
-            <Stack.Screen name="HomePage" component={HomePageScreen} />
-            <Stack.Screen name="Login" component={LoginScreen} />
-            <Stack.Screen name="Profile" component={ProfilePage} />
-            <Stack.Screen name="HistoriqueIntervention" component={InterventionListPage} />
-            <Stack.Screen name="DetailsIntervention" component={InterventionPage} />
-          </Stack.Navigator>
+    <IPProvider>
+      <View style={{ flex: 1 }}>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false
+          }}
+        >
+          <Stack.Screen name={HeatProRoutes.HomePage} component={HomePageScreen} />
+          <Stack.Screen name={HeatProRoutes.Login} component={LoginScreen} />
+          <Stack.Screen name={HeatProRoutes.Profile} component={ProfilePage} />
+          <Stack.Screen name={HeatProRoutes.Specification} component={SpecificationPage} />
+          <Stack.Screen name={HeatProRoutes.HistoriqueIntervention} component={InterventionListPage} />
+          <Stack.Screen name={HeatProRoutes.DetailsIntervention} component={InterventionPage} />
+          <Stack.Screen name={HeatProRoutes.InterventionFormVisualisationPage} component={InterventionFormVisualisationPage} />
+        </Stack.Navigator>
 
-          <BottomNavigationWrapper></BottomNavigationWrapper>
-        </View>
-      </IPProvider>
+        <BottomNavigationWrapper></BottomNavigationWrapper>
+      </View>
+    </IPProvider>
   );
 }
 
 function getRouteName(state) {
   if (state?.routes?.length > 0) {
-    return state.routes[state.index]?.name || 'Login';
+    return state.routes[state.index]?.name || HeatProRoutes.Login;
   }
-  return 'Login';
+  return HeatProRoutes.Login;
 }
 
 function BottomNavigationWrapper() {
@@ -78,4 +81,14 @@ function BottomNavigationWrapper() {
       navigation={navigation}
     />
   );
+}
+
+export enum HeatProRoutes {
+  HomePage = 'HomePage',
+  Login = 'Login',
+  Profile = 'Profile',
+  Specification = 'Specification',
+  HistoriqueIntervention = 'HistoriqueIntervention',
+  DetailsIntervention = 'DetailsIntervention',
+  InterventionFormVisualisationPage = 'InterventionFormVisualisationPage'
 }

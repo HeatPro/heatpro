@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { NavigationBarItem } from '@/components/ui/HeatProComponents/NavigationBarItem';
+import { HeatProRoutes } from '@/app/_layout';
 
 export interface NavigationBarTabs {
   title: string;
@@ -24,12 +25,12 @@ const NavigationBarComponent = ({
   const [indexSelectedNavigationBarItem, setIndexSelectedNavigationBarItem] = useState(0);
 
   const defaultNavigationBarItems = [
-    { title: 'Historique', component: 'HistoriqueIntervention' },
-    { title: 'Fiche technique', component: 'Specifications' },
-    { title: 'Formulaire', component: 'Formulaire' }
+    { title: 'Historique', component: HeatProRoutes.HistoriqueIntervention },
+    { title: 'Fiche technique', component: HeatProRoutes.Specification },
+    { title: 'Formulaire', component: HeatProRoutes.InterventionFormVisualisationPage }
   ];
 
-  const visibleRoutes = ['HomePage', 'Profile', 'HistoriqueIntervention', 'DetailsIntervention'];
+  const visibleRoutes = ['HomePage', 'Profile', 'HistoriqueIntervention', 'DetailsIntervention', 'Specification', 'InterventionFormVisualisationPage'];
 
   if (!visibleRoutes.includes(currentRouteName)) {
     return null;
