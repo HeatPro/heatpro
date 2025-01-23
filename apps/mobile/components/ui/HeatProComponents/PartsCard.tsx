@@ -29,7 +29,6 @@ const PartsCardComponent: React.FC<PartsCardComponentProps> = ({ title, parts })
                 <Text style={[styles.cardInfo, styles.cardInfoMargin]}>{field.name}</Text>
                 <Text style={styles.cardInfo}>RÉF : {field.ref}</Text>
               </View>
-
             </View>
           ))}
         </View>
