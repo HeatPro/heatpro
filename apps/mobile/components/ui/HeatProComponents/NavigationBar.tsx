@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Component, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { NavigationBarItem } from '@/components/ui/HeatProComponents/NavigationBarItem';
 import { HeatProRoutes } from '@/app/_layout';

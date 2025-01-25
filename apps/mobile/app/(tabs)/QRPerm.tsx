@@ -4,31 +4,30 @@ import { Link, Stack } from "expo-router";
 import { useCameraPermissions } from "expo-camera";
 
 
-export default function QrPerm() {
+export default function QrPerm({ navigation }) {
   const [permission, requestPermission] = useCameraPermissions();
 
   const isPermissionGranted = Boolean(permission?.granted);
 
   return (
     <SafeAreaView style={styles.container}>
-      <Stack.Screen options={{ title: "QrScan", headerShown: false }} />
       <Text style={styles.title}>QR Code Scanner</Text>
       <View style={{ gap: 20 }}>
         <Pressable onPress={requestPermission}>
           <Text style={styles.buttonStyle}>Request Permissions</Text>
         </Pressable>
-        <Link href={"/scanner"} asChild>
-          <Pressable disabled={!isPermissionGranted}>
-            <Text
-              style={[
-                styles.buttonStyle,
-                { opacity: !isPermissionGranted ? 0.5 : 1 },
-              ]}
-            >
-              Scan Code
-            </Text>
+        <Pressable
+        onPress={() => navigation.navigate('QRScan')}
+        disabled={!isPermissionGranted}>
+          <Text
+            style={[
+              styles.buttonStyle,
+              { opacity: !isPermissionGranted ? 0.5 : 1 },
+            ]}
+          >
+          Scan Code
+          </Text>
           </Pressable>
-        </Link>
       </View>
     </SafeAreaView>
   );

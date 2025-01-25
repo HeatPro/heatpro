@@ -3690,7 +3690,7 @@ babel-preset-jest@^29.6.3:
     babel-plugin-jest-hoist "^29.6.3"
     babel-preset-current-node-syntax "^1.0.0"
 
-"backend@file:C:\\Users\\Michel K\\Desktop\\Polytech\\SI5\\SI5-IHM\\CCPS\\Projet\\heatpro\\apps\\backend":
+"backend@file:C:\\Users\\elias\\OneDrive\\Bureau\\heatpro\\apps\\backend":
   version "0.0.1"
   resolved "file:apps/backend"
   dependencies:
@@ -5291,10 +5291,10 @@ expo-blur@~14.0.1:
   resolved "https://registry.npmjs.org/expo-blur/-/expo-blur-14.0.1.tgz"
   integrity sha512-3Q6jFBLbY8n2vwk28ycUC+eIlVhnlqwkXUKk/Lfaj+SGV3AZMQyrixe7OYwJdUfwqETBrnYYMB6uNrJzOSbG+g==
 
-expo-camera@^16.0.10:
-  version "16.0.10"
-  resolved "https://registry.npmjs.org/expo-camera/-/expo-camera-16.0.10.tgz"
-  integrity sha512-CKvC9dhBuR7VkuwXsBya+Ok2h97z9t7EefkP5sZNdPXZYab8K/zxcisGJZG6/mjCVqzHIftvCb3GxJtuRrDIBQ==
+expo-camera@^16.0.14:
+  version "16.0.14"
+  resolved "https://registry.npmjs.org/expo-camera/-/expo-camera-16.0.14.tgz"
+  integrity sha512-nTQjb3Vtp0rA40fQdGLO+YCg7kHigBs9J4LkAXiL7Gsjl8lxYgFqHCCrFLOm/4D2TJSnqHSGQQflzwoWQDpZzw==
   dependencies:
     invariant "^2.2.4"
 
@@ -8148,7 +8148,7 @@ mkdirp@^1.0.4:
   resolved "https://registry.npmjs.org/mkdirp/-/mkdirp-1.0.4.tgz"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
 
-"mobile@file:C:\\Users\\Michel K\\Desktop\\Polytech\\SI5\\SI5-IHM\\CCPS\\Projet\\heatpro\\apps\\mobile":
+"mobile@file:C:\\Users\\elias\\OneDrive\\Bureau\\heatpro\\apps\\mobile":
   version "1.0.0"
   resolved "file:apps/mobile"
   dependencies:
@@ -8156,6 +8156,7 @@ mkdirp@^1.0.4:
     "@expo/vector-icons" "^14.0.2"
     "@react-navigation/bottom-tabs" "^7.0.0"
     "@react-navigation/native" "^7.0.0"
+    "@react-navigation/native-stack" "^7.2.0"
     "@tanstack/react-query" "^5.60.5"
     expo "^52.0.17"
     expo-blur "~14.0.1"

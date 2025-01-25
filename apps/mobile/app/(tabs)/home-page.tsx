@@ -8,6 +8,7 @@ export default function HomePageScreen({ navigation }) {
 
   const handleQRCodeScan = () => {
     console.log('QR Code scan pressed');
+    navigation.navigate('ScanQRCode');
   };
 
   const handleQRCodeGeneration = () => {

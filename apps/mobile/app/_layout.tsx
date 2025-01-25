@@ -17,6 +17,8 @@ import NavigationBar from '@/components/ui/HeatProComponents/NavigationBar';
 import { useNavigationState } from '@react-navigation/native';
 import SpecificationPage from '@/app/(tabs)/SpecificationsPage';
 import InterventionFormVisualisationPage from '@/app/(tabs)/InterventionFormVisualisationPage';
+import QrPerm from './(tabs)/QRPerm';
+import QrScan from './(tabs)/QRCodeScan';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -55,6 +57,9 @@ export default function RootLayout() {
           <Stack.Screen name={HeatProRoutes.HistoriqueIntervention} component={InterventionListPage} />
           <Stack.Screen name={HeatProRoutes.DetailsIntervention} component={InterventionPage} />
           <Stack.Screen name={HeatProRoutes.InterventionFormVisualisationPage} component={InterventionFormVisualisationPage} />
+          <Stack.Screen name={HeatProRoutes.ScanQRCode} component={QrPerm} />
+          <Stack.Screen name={HeatProRoutes.QRScan} component={QrScan} />
+
         </Stack.Navigator>
 
         <BottomNavigationWrapper></BottomNavigationWrapper>
@@ -90,5 +95,7 @@ export enum HeatProRoutes {
   Specification = 'Specification',
   HistoriqueIntervention = 'HistoriqueIntervention',
   DetailsIntervention = 'DetailsIntervention',
-  InterventionFormVisualisationPage = 'InterventionFormVisualisationPage'
+  InterventionFormVisualisationPage = 'InterventionFormVisualisationPage',
+  ScanQRCode = 'ScanQRCode',
+  QRScan = 'QRScan'
 }
