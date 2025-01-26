@@ -7,10 +7,10 @@ import CustomText from "@/components/ui/CustomText";
 
 
 export default function QrScan() {
-  const leftUpCorner = require('./../../../assets/images/leftUpCorner.png');
-  const leftDownCorner = require('./../../../assets/images/leftDownCorner.png');
-  const rightUpCorner = require('./../../../assets/images/rightUpCorner.png');
-  const rightDownCorner = require('./../../../assets/images/rightDownCorner.png');
+  const leftUpCorner = require('@/assets/images/leftUpCorner.png');
+  const leftDownCorner = require('@/assets/images/leftDownCorner.png');
+  const rightUpCorner = require('@/assets/images/rightUpCorner.png');
+  const rightDownCorner = require('@/assets/images/rightDownCorner.png');
 
   const [qrCodeRes, setQrCodeRes] = useState("QR Code Data");
 
@@ -18,7 +18,7 @@ export default function QrScan() {
     <SafeAreaView style={styles.container}>
       <Stack.Screen options={{ title: "Overview", headerShown: false }} />
       <View style={styles.textContainer}>
-        <Image source={require('./../../../assets/images/LeftArrow.png')} />
+        <Image source={require('@/assets/images/LeftArrow.png')} />
         <CustomText text="Scan QR Code Machine"></CustomText>
       </View>
       <View style={styles.cameraContainer}>

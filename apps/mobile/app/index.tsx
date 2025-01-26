@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 import { 
   Image, 
   StyleSheet, 
@@ -15,6 +15,7 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { IPProvider, useIPAddress } from './IPContext';
 import { ThemeColors } from './types';
+import { router } from 'expo-router';
 
 
 // Development mode flag
@@ -59,6 +60,7 @@ const App: React.FC = () => {
     light: '#ffffff',
     dark: '#000000'
   };
+
 
   return (
       <ParallaxScrollView

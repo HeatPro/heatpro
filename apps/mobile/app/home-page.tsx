@@ -3,11 +3,13 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { CustomButton } from '@/components/ui/CustomButton';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { router } from 'expo-router';
 
 export default function HomePageScreen() {
 
   const handleQRCodeScan = () => {
     console.log('QR Code scan pressed');
+    router.push("/scanner")
   };
 
   const handleQRCodeGeneration = () => {

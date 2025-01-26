@@ -7,6 +7,7 @@ import { CustomButton } from '@/components/ui/CustomButton';
 import { Checkbox } from '@/components/ui/Checkbox';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useIPAddress } from './IPContext';
+import { router } from 'expo-router';
 
 export default function LoginScreen() {
   const [username, setUsername] = useState('');
@@ -103,7 +104,7 @@ export default function LoginScreen() {
       console.log('[DEBUG] username:', username);
       console.log('[DEBUG] password:', password);
       console.debug('IPADDRESS: ', ipAddress);
-      const response = await fetch(`http://${ipAddress}:3000/auth/login/`, {
+      const response = await fetch(`http://localhost:3000/auth/login/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -123,6 +124,7 @@ export default function LoginScreen() {
       // Check if we have an access_token in the response
       if (data.access_token) {
         console.log('[DEBUG] Token received');
+        router.push("/home-page")
         Alert.alert(
           'Succès',
           'Connexion réussie',
@@ -150,6 +152,8 @@ export default function LoginScreen() {
         ]
       );
     }
+
+    router.push("/home-page")
   };
 
   return (

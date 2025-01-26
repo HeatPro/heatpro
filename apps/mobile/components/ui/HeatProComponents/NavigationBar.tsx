@@ -1,78 +1,78 @@
-import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import React from 'react';
+import { StyleSheet, View, SafeAreaView } from 'react-native';
 import { NavigationBarItem } from '@/components/ui/HeatProComponents/NavigationBarItem';
+import { router, usePathname } from 'expo-router';
 
-export interface NavigationBarTabs { // TODO : use this to inject every title of tab & redirection to the right component
-  title: string;
-  component: string;
-}
+const NavigationBarComponent = () => {
+  const currentPath = usePathname();
 
-interface NavigationBarProps {
-  navBarWidth: string;
+  const navigationItems = [
+    {
+      title: "Accueil",
+      path: "/home-page",
+      iconName: "home"
+    },
+    {
+      title: "Interventions",
+      path: "/intervention",
+      iconName: "assignment"
+    },
+    {
+      title: "Profil",
+      path: "/profile-page",
+      iconName: "person"
+    }
+  ];
 
-}
+  const isPathActive = (itemPath: string) => {
+    // Check if we're in any intervention-related route
+    if (itemPath === '/intervention') {
+      return currentPath.startsWith('/intervention');
+    }
+    return currentPath === itemPath;
+  };
 
-const NavigationBarComponent = ({ navBarWidth }: NavigationBarProps) => {
-
-  const [indexSelectedNavigationBarItem, setIndexSelectedNavigationBarItem] = useState(0);
-
-  const onPressVerification = (index: number) => {
-    setIndexSelectedNavigationBarItem(index);
+  const handleNavigation = (path: string) => {
+    router.push(path);
   };
 
   return (
-    <View style={[styles.container, { width: navBarWidth }]}>
-
-      {indexSelectedNavigationBarItem == 0 ?
-        <NavigationBarItem title="Historique"
-                           onPress={() => onPressVerification(0)}
-                           iconName="assignment" iconSize={32}
-                           style={styles.navbarElement} iconColor="#657DDF" textStyle={styles.navbarTextSelected}></NavigationBarItem>
-        :
-        <NavigationBarItem title="Historique"
-                           onPress={() => onPressVerification(0)}
-                           iconName="assignment" iconSize={32}
-                           style={styles.navbarElement} iconColor="#9D9D9D" textStyle={styles.navbarText}></NavigationBarItem>
-      }
-      {indexSelectedNavigationBarItem == 1 ?
-        <NavigationBarItem title="Historique"
-                           onPress={() => onPressVerification(1)}
-                           iconName="assignment" iconSize={32}
-                           style={styles.navbarElement} iconColor="#657DDF" textStyle={styles.navbarTextSelected} ></NavigationBarItem>
-        :
-        <NavigationBarItem title="Historique"
-                           onPress={() => onPressVerification(1)}
-                           iconName="assignment" iconSize={32}
-                           style={styles.navbarElement} iconColor="#9D9D9D" textStyle={styles.navbarText}></NavigationBarItem>
-      }
-      {indexSelectedNavigationBarItem == 2 ?
-        <NavigationBarItem title="Historique"
-                           onPress={() => onPressVerification(2)}
-                           iconName="assignment" iconSize={32}
-                           style={styles.navbarElement} iconColor="#657DDF" textStyle={styles.navbarTextSelected}></NavigationBarItem>
-        :
-        <NavigationBarItem title="Historique"
-                           onPress={() => onPressVerification(2)}
-                           iconName="assignment" iconSize={32}
-                           style={styles.navbarElement} iconColor="#9D9D9D" textStyle={styles.navbarText}></NavigationBarItem>
-      }
-    </View>
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        {navigationItems.map((item, index) => (
+          <NavigationBarItem
+            key={index}
+            title={item.title}
+            onPress={() => handleNavigation(item.path)}
+            iconName={item.iconName}
+            iconSize={24}
+            style={styles.navbarElement}
+            iconColor={isPathActive(item.path) ? "#657DDF" : "#9D9D9D"}
+            textStyle={isPathActive(item.path) ? styles.navbarTextSelected : styles.navbarText}
+          />
+        ))}
+      </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  safeArea: {
+    backgroundColor: '#FFFFFF',
+  },
   container: {
-    display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
-    padding: 2,
-    borderRadius: 32
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    borderTopWidth: 1,
+    borderTopColor: '#E0E0E0',
   },
   navbarElement: {
-    display: 'flex',
-    flex: 1
+    flex: 1,
+    alignItems: 'center',
   },
   navbarTextSelected: {
     fontSize: 12,
@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
     fontWeight: '700'
   },
   navbarText: {
+    fontSize: 12,
     color: '#9D9D9D',
     fontWeight: '500'
   }

@@ -1,11 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { CustomButton } from '@/components/ui/CustomButton';
+import { router } from 'expo-router';
 
 const ProfilePage = () => {
 
   const handleLogin = () => {
     console.log('Se deconnecter pressed');
+    router.push("/login")
   };
 
   const handleARQRCode = () => {
