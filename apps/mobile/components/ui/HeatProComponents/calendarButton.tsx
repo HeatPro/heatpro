@@ -45,6 +45,10 @@ export const CalendarButton: React.FC<CalendarButtonProps> = ({ calendar, style 
     
     const forward = () => {
         console.log('Menu de droite cliqué');
+        if(currentPeriodeIndex < 12){
+            setCurrentPeriodeIndex(currentPeriodeIndex + 1);
+            processPeriode();
+        }
     };
 
     return (<View style={style ? [styles.container,style] : styles.container}>
@@ -73,7 +77,7 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 20,
         height:"100%",
-        backgroundColor: 'yellow',
+        backgroundColor: '#748BE8',
     },
     text :{
         color: 'white',

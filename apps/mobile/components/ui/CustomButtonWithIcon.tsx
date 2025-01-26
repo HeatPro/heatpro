@@ -12,7 +12,6 @@ export function CustomButtonWithIcon({ onPress, iconName }: { onPress: () => voi
           name={iconName}
           size={25}
           color="white"
-          style={styles.icon} // Ajoutez un style pour l'icône
         />
       }
       onPress={onPress}
@@ -23,13 +22,10 @@ export function CustomButtonWithIcon({ onPress, iconName }: { onPress: () => voi
 const styles = StyleSheet.create({
     button: {
         flex: 1,
-        backgroundColor: '#657DDF',
+        backgroundColor: '#748BE8',
         borderRadius: 100,
-        padding: 15,
         alignItems: 'center',
         justifyContent: 'center',
-    },
-    icon: {
-        marginRight: 10, // Ajoutez une marge pour donner plus d'espace à l'icône
+        height:90,
     },
 });

@@ -88,12 +88,11 @@ const styles = StyleSheet.create({
   },
   secondRow: {
     padding:"5%",
-    backgroundColor:'black',
     display: 'flex',
     flexDirection: 'row',
     width: '100%',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
   },
   title: {
     fontSize: 25,
