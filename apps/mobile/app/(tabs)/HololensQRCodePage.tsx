@@ -1,12 +1,15 @@
 import React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import QRCode from 'react-native-qrcode-svg';
 
 const HololensQRCodePage = () => {
 
   const onPressBackButton = () => {
     console.log("back button pressed");
   }
+
+   const qrCodeSize = Math.min(Dimensions.get('window').width * 0.3, 250);
 
   return (
     <View style={styles.globalContainer}>
@@ -20,11 +23,12 @@ const HololensQRCodePage = () => {
       </View>
       <View style={styles.container}>
         <View style={styles.qrCodeImage}>
-          <Image
-            // TODO : Générer un QR Code à la volée à partir de l'id de la machine, trop dur d'avoir une image dynamique
-            source={require('C:\\Users\\Michel K\\Desktop\\Polytech\\SI5\\SI5-IHM\\CCPS\\Projet\\heatpro\\apps\\mobile\\assets\\images\\qrcode.png')}
-            style={styles.qrCode}
-          />
+          <QRCode
+          value="https://6lcw9gp4g4.ufs.sh/f/ZVcn3ePGCcf5vQJlCpPqM0VGNQufie9Cdr7aT6A4RkwWYsKX"
+          size={qrCodeSize}
+          backgroundColor="white"
+          color="black"
+        />
         </View>
         <View style={styles.card}>
           <View style={styles.cardTitleContainer}>
