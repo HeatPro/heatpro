@@ -1,9 +1,10 @@
 import React from 'react';
 import { ScrollView, StyleSheet, View, Text, Platform } from 'react-native';
 import InterventionCardComponent, { Field } from '@/components/ui/HeatProComponents/InfoCard';
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
 import { TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { HeaderFicheTechniqueIntervention, IconProps } from '@/components/ui/HeatProComponents/headers/HeaderFicheTechniqueIntervention';
 
 export default function InterventionList() {
   const fields: Field[] = [
@@ -29,11 +30,23 @@ export default function InterventionList() {
     }
   ];
 
+  const onProfilePress = () => {
+    console.log("profile")
+    router.push("/profile-page")
+  };
+
+  const onDisconnectPress = () => {
+    console.log("disconnect")
+    router.push("/login")
+  };
+
+  const leftIcon: IconProps = { iconName: 'person', onPress: onProfilePress };
+  const rightIcon: IconProps = { iconName: 'logout', onPress: onDisconnectPress };
+
   return (
     <>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Interventions</Text>
-      </View>
+      <HeaderFicheTechniqueIntervention title="Intervention" leftIcon={leftIcon} rightIcon={rightIcon}
+                                        ></HeaderFicheTechniqueIntervention>
         <ScrollView
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}

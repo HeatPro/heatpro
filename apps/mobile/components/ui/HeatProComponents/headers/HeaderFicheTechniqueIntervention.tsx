@@ -12,21 +12,19 @@ interface HeaderFicheTechniqueInterventionProps {
   title: string;
   leftIcon: IconProps;
   rightIcon: IconProps;
-  leftMenu: string;
-  rightMenu: string;
+  leftMenu?: string;
+  rightMenu?: string;
   style?: object;
 }
 
-
 export function HeaderFicheTechniqueIntervention({
-                                                   title,
-                                                   leftIcon,
-                                                   rightIcon,
-                                                   leftMenu,
-                                                   rightMenu,
-                                                   style
-                                                 }: Readonly<HeaderFicheTechniqueInterventionProps>) {
-
+  title,
+  leftIcon,
+  rightIcon,
+  leftMenu,
+  rightMenu,
+  style
+}: Readonly<HeaderFicheTechniqueInterventionProps>) {
   const [indexSelectedMenu, setIndexSelectedMenu] = useState(0);
 
   const onPress = () => {
@@ -40,53 +38,52 @@ export function HeaderFicheTechniqueIntervention({
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <View style={styles.firstRow}>
-        <TouchableOpacity onPress={leftIcon.onPress}>
+        <TouchableOpacity style={styles.leftIcon} onPress={leftIcon.onPress}>
           <Icon 
             name={leftIcon.iconName} 
-            size={leftIcon.iconSize ? leftIcon.iconSize : 24} 
+            size={leftIcon.iconSize || 24} 
             color="#FFFFFF" 
           />
         </TouchableOpacity>
         <Text style={styles.title}>{title}</Text>
-        <TouchableOpacity onPress={rightIcon.onPress}>
+        <TouchableOpacity style={styles.rightIcon} onPress={rightIcon.onPress}>
           <Icon 
             name={rightIcon.iconName} 
-            size={rightIcon.iconSize ? rightIcon.iconSize : 24} 
+            size={rightIcon.iconSize || 24} 
             color="#FFFFFF" 
           />
         </TouchableOpacity>
       </View>
-      <View style={styles.secondRow}>
-        {indexSelectedMenu == 0 ?
-          <View style={[styles.menuElement, styles.menuElementSelected, styles.firstMenu]}>
-            <TouchableOpacity onPress={onPress}>
+
+      {(leftMenu || rightMenu) && (
+        <View style={styles.secondRow}>
+          {leftMenu && (
+            <TouchableOpacity 
+              style={[
+                styles.menuElement, 
+                indexSelectedMenu === 0 && styles.menuElementSelected,
+                styles.firstMenu
+              ]}
+              onPress={onPress}
+            >
               <Text style={styles.menuElementText}>{leftMenu}</Text>
             </TouchableOpacity>
-          </View>
-          :
-          <View style={[styles.menuElement, styles.firstMenu]}>
-            <TouchableOpacity onPress={onPress}>
-              <Text style={styles.menuElementText}>{leftMenu}</Text>
-            </TouchableOpacity>
-          </View>
-        }
-        {indexSelectedMenu == 1
-          ?
-          <View style={[styles.menuElement, styles.menuElementSelected]}>
-            <TouchableOpacity onPress={onPress2}>
+          )}
+          {rightMenu && (
+            <TouchableOpacity 
+              style={[
+                styles.menuElement,
+                indexSelectedMenu === 1 && styles.menuElementSelected
+              ]}
+              onPress={onPress2}
+            >
               <Text style={styles.menuElementText}>{rightMenu}</Text>
             </TouchableOpacity>
-          </View>
-          :
-          <View style={styles.menuElement}>
-            <TouchableOpacity onPress={onPress2}>
-              <Text style={styles.menuElementText}>{rightMenu}</Text>
-            </TouchableOpacity>
-          </View>
-        }
-      </View>
+          )}
+        </View>
+      )}
     </View>
   );
 }
@@ -107,9 +104,16 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     width: '100%',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 12
+    marginBottom: 12,
+    paddingHorizontal: '5%'
+  },
+  leftIcon: {
+    padding: 8,
+  },
+  rightIcon: {
+    padding: 8,
   },
   secondRow: {
     display: 'flex',
@@ -127,15 +131,16 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 0, height: 2 }
   },
   menuElement: {
-    paddingVertical: 6,
-    borderRadius: 46,
+    paddingVertical: 8,
+    paddingHorizontal: 3,
+    borderRadius: 47,
     flex: 1
   },
   menuElementSelected: {
     backgroundColor: '#748BE8'
   },
   menuElementText: {
-    fontSize: 12,
+    fontSize: 13,
     color: '#FFFFFF',
     textAlign: 'center'
   },
@@ -143,3 +148,5 @@ const styles = StyleSheet.create({
     marginRight: '5%'
   }
 });
+
+export default HeaderFicheTechniqueIntervention;

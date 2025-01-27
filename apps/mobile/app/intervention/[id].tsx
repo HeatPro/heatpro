@@ -1,15 +1,29 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import { useLocalSearchParams } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import InterventionCardComponent, { Field } from '@/components/ui/HeatProComponents/InfoCard';
 import SignaledProblemCard, { Problem, ProblemStatus } from '@/components/ui/HeatProComponents/SignaledProblemCard';
 import VerificationsComponent from '@/components/ui/HeatProComponents/VerificationsComponent';
 import PartsCardComponent, { Part } from '@/components/ui/HeatProComponents/PartsCard';
 import CommentCard from '@/components/ui/HeatProComponents/CommentCard';
 import AssociatedMediaCard from '@/components/ui/HeatProComponents/AssociatedMediaCard';
+import HeaderFicheTechniqueIntervention, { IconProps } from '@/components/ui/HeatProComponents/headers/HeaderFicheTechniqueIntervention';
 
 export default function InterventionDetail() {
   const { id } = useLocalSearchParams();
+
+  const onProfilePress = () => {
+    console.log("profile")
+    router.push("/profile-page")
+  };
+
+  const onDisconnectPress = () => {
+    console.log("disconnect")
+    router.push("/login")
+  };
+
+  const leftIcon: IconProps = { iconName: 'person', onPress: onProfilePress };
+  const rightIcon: IconProps = { iconName: 'logout', onPress: onDisconnectPress };
 
   const fields: Field[] = [
     {
@@ -86,9 +100,8 @@ export default function InterventionDetail() {
 
   return (
     <>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Intervention</Text>
-      </View>
+      <HeaderFicheTechniqueIntervention title="Intervention" leftIcon={leftIcon} rightIcon={rightIcon}
+                                        ></HeaderFicheTechniqueIntervention>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.container}>
           <InterventionCardComponent title="Informations générales" fields={fields} />

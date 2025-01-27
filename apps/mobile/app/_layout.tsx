@@ -69,6 +69,12 @@ export default function RootLayout() {
                 gestureEnabled: true
               }}
             />
+            <Stack.Screen 
+              name="hololens-qrcode"
+              options={{
+                gestureEnabled: true
+              }}
+            />
             <Stack.Screen name="scanner" />
             <Stack.Screen name="profile-page" />
             <Stack.Screen name="+not-found" />

@@ -28,9 +28,9 @@ const NavigationBarComponent = () => {
       iconName: "article"
     },
     {
-      title: "Profil",
-      path: "/profile-page",
-      iconName: "person"
+      title: "Paramètres",
+      path: "/hololens-qrcode",
+      iconName: "settings"
     }
   ];
 
