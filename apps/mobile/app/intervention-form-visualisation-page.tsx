@@ -60,7 +60,7 @@ const InterventionFormVisualisationPage = () => {
 
   return (
     <View style={styles.parentContainer}>
-      <HeaderFicheTechniqueIntervention title="Intervention" leftIcon={leftIcon} rightIcon={rightIcon}
+      <HeaderFicheTechniqueIntervention title="Formulaire" leftIcon={leftIcon} rightIcon={rightIcon}
                                         leftMenu="Visualisation" rightMenu="Édition"></HeaderFicheTechniqueIntervention>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.container}>

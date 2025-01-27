@@ -64,7 +64,7 @@ export default function RootLayout() {
               }}
             />
             <Stack.Screen 
-              name="specification"
+              name="fiche-technique"
               options={{
                 gestureEnabled: true
               }}

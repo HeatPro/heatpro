@@ -10,10 +10,12 @@ import { router } from 'expo-router';
 const SpecificationPage = () => {
 
   const onProfilePress = () => {
+    console.log("profile")
     router.push("/profile-page")
   };
 
   const onDisconnectPress = () => {
+    console.log("disconnect")
     router.push("/login")
   };
 

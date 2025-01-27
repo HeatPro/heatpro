@@ -16,6 +16,7 @@ export default function HomePageScreen() {
     console.log('QR Code generation pressed');
   };
   const handleLogOut = () => {
+    router.push("/login")
     console.log('Log out pressed');
   };
 
@@ -28,7 +29,7 @@ export default function HomePageScreen() {
         source={require('@/assets/images/logo.png')}
         style={styles.logo}
       />
-      <Text style={[styles.title, styles.shadow]}>Bonjour Igor</Text>
+      <Text style={[styles.title, styles.shadow]}>Bonjour Jean</Text>
       <Text style={[styles.subtitle, styles.shadow]}>Que souhaitez-vous faire ?</Text>
 
       <View style={styles.actionButtonsContainer}>

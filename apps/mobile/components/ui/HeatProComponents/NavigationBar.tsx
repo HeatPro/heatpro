@@ -23,8 +23,8 @@ const NavigationBarComponent = () => {
       iconName: "edit"
     },
     {
-      title: "Spécification",
-      path: "/specification",
+      title: "Fiche technique",
+      path: "/fiche-technique",
       iconName: "article"
     },
     {
@@ -83,12 +83,14 @@ const styles = StyleSheet.create({
   navbarTextSelected: {
     fontSize: 12,
     color: '#657DDF',
-    fontWeight: '700'
+    fontWeight: '700',
+    textAlign: 'center',
   },
   navbarText: {
     fontSize: 12,
     color: '#9D9D9D',
-    fontWeight: '500'
+    fontWeight: '500',
+    textAlign: 'center',
   }
 });
 

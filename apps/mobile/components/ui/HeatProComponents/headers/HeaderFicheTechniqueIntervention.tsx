@@ -42,9 +42,21 @@ export function HeaderFicheTechniqueIntervention({
   return (
     <View style={styles.container}>
       <View style={styles.firstRow}>
-        <Icon name={leftIcon.iconName} size={leftIcon.iconSize ? leftIcon.iconSize : 24} color="#FFFFFF" />
+        <TouchableOpacity onPress={leftIcon.onPress}>
+          <Icon 
+            name={leftIcon.iconName} 
+            size={leftIcon.iconSize ? leftIcon.iconSize : 24} 
+            color="#FFFFFF" 
+          />
+        </TouchableOpacity>
         <Text style={styles.title}>{title}</Text>
-        <Icon name={rightIcon.iconName} size={rightIcon.iconSize ? rightIcon.iconSize : 24} color="#FFFFFF" />
+        <TouchableOpacity onPress={rightIcon.onPress}>
+          <Icon 
+            name={rightIcon.iconName} 
+            size={rightIcon.iconSize ? rightIcon.iconSize : 24} 
+            color="#FFFFFF" 
+          />
+        </TouchableOpacity>
       </View>
       <View style={styles.secondRow}>
         {indexSelectedMenu == 0 ?
