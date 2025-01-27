@@ -4,17 +4,20 @@ import { StatusBar } from 'expo-status-bar';
 import { CustomButton } from '@/components/ui/CustomButton';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
-export default function HomePageScreen() {
+export default function HomePageScreen({ navigation }) {
 
   const handleQRCodeScan = () => {
     console.log('QR Code scan pressed');
+    navigation.navigate('ScanQRCode');
   };
 
   const handleQRCodeGeneration = () => {
     console.log('QR Code generation pressed');
+    navigation.navigate('HistoriqueIntervention');
   };
   const handleLogOut = () => {
     console.log('Log out pressed');
+    navigation.navigate('Login');
   };
 
   return (
@@ -91,14 +94,14 @@ const styles = StyleSheet.create({
   actionButton: {
     backgroundColor: '#FFFFFF',
     borderRadius: 40,
-    shadowOffset: { width: 0, height: 3},
+    shadowOffset: { width: 0, height: 3 },
     shadowColor: '#000000',
     shadowRadius: 12,
     shadowOpacity: 0.7,
     flex: 1,
     fontSize: 20,
     paddingVertical: 12,
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   bottomActionButton: {
     marginTop: 36

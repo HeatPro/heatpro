@@ -8,7 +8,6 @@ export enum ProblemStatus {
   RESOLVED = 'Résolu'
 }
 
-// Configuration des icônes par statut
 const statusIcons = {
   [ProblemStatus.UNRESOLVED]: {
     name: 'close-circle',
@@ -49,73 +48,86 @@ const SignaledProblemCard: React.FC<SignaledProblemCardProps> = ({ problems, wid
   return (
     <View style={[styles.signaledProblemContainer, { width: cardWidth }]}>
       <View style={styles.headerContainer}>
-        <Text style={styles.signaledProblemTitle}>Problème signalé</Text>
-        <View style={styles.statusContainer}>
-          <View style={[
-            styles.statusBadge,
-            {
-              backgroundColor: problems[activeIndex].status === ProblemStatus.UNRESOLVED ? '#FFEBEB' :
-                problems[activeIndex].status === ProblemStatus.ON_GOING ? '#FFF4EB' : '#EBFFED'
-            }
-          ]}>
-            <Text style={[
-              styles.statusText,
+        <Text style={styles.signaledProblemTitle}>Problèmes signalés</Text>
+        {problems && problems.length > 0 && (
+          <View style={styles.statusContainer}>
+            <View style={[
+              styles.statusBadge,
               {
-                color: problems[activeIndex].status === ProblemStatus.UNRESOLVED ? '#F69091' :
-                  problems[activeIndex].status === ProblemStatus.ON_GOING ? '#F6B490' : '#4ff555'
+                backgroundColor: problems[activeIndex].status === ProblemStatus.UNRESOLVED ? '#FFEBEB' :
+                  problems[activeIndex].status === ProblemStatus.ON_GOING ? '#FFF4EB' : '#EBFFED'
               }
-            ]}>{problems[activeIndex].status}</Text>
-            <Icon
-              name={statusIcons[problems[activeIndex].status].name}
-              size={20}
-              color={statusIcons[problems[activeIndex].status].color}
-              style={styles.statusIcon}
-            />
-          </View>
-        </View>
-      </View>
-      <View style={styles.scrollViewContainer}>
-        <ScrollView
-          horizontal
-          pagingEnabled
-          showsHorizontalScrollIndicator={false}
-          onScroll={handleScroll}
-          scrollEventThrottle={16}
-          contentContainerStyle={[
-            styles.scrollViewContent,
-            { width: (cardWidth) * problems.length }
-          ]}
-        >
-          {problems.map((problem, index) => (
-            <View key={index} style={[styles.problemContent, { width: cardWidth }]}>
-              <View style={styles.signaledProblemContent}>
-                <Text style={styles.signaledProblemContentCommonTextProps}>Description</Text>
-                <Text style={[styles.signaledProblemContentText, styles.signaledProblemContentCommonTextProps]}>
-                  {problem.description}
-                </Text>
-              </View>
-              <View style={styles.signaledProblemContent}>
-                <Text style={styles.signaledProblemContentCommonTextProps}>Actions réalisées</Text>
-                <Text style={[styles.signaledProblemContentText, styles.signaledProblemContentCommonTextProps]}>
-                  {problem.actions}
-                </Text>
-              </View>
+            ]}>
+              <Text style={[
+                styles.statusText,
+                {
+                  color: problems[activeIndex].status === ProblemStatus.UNRESOLVED ? '#F69091' :
+                    problems[activeIndex].status === ProblemStatus.ON_GOING ? '#F6B490' : '#4ff555'
+                }
+              ]}>{problems[activeIndex].status}</Text>
+              <Icon
+                name={statusIcons[problems[activeIndex].status].name}
+                size={20}
+                color={statusIcons[problems[activeIndex].status].color}
+                style={styles.statusIcon}
+              />
             </View>
-          ))}
-        </ScrollView>
+          </View>
+        )}
       </View>
 
-      <View style={styles.paginationContainer}>
-        {problems.map((_, index) => (
-          <View
-            key={index}
-            style={[
-              styles.paginationDot,
-              { backgroundColor: index === activeIndex ? '#657DDF' : '#E8E8E8' }
-            ]}
-          />
-        ))}
-      </View>
+      {!problems || problems.length === 0 ? (
+        <View style={styles.noProblemsContainer}>
+          <Text style={styles.noProblemsText}>Aucun problème à afficher</Text>
+        </View>
+      ) : (
+        <>
+          <View style={styles.scrollViewContainer}>
+            <ScrollView
+              horizontal
+              pagingEnabled
+              showsHorizontalScrollIndicator={false}
+              onScroll={handleScroll}
+              scrollEventThrottle={16}
+              contentContainerStyle={[
+                styles.scrollViewContent,
+                { width: cardWidth * problems.length }
+              ]}
+            >
+              {problems.map((problem, index) => (
+                <View key={index} style={[styles.problemContent, { width: cardWidth }]}>
+                  <View style={styles.signaledProblemContent}>
+                    <Text style={styles.signaledProblemContentCommonTextProps}>Description</Text>
+                    <Text style={[styles.signaledProblemContentText, styles.signaledProblemContentCommonTextProps]}>
+                      {problem.description}
+                    </Text>
+                  </View>
+                  <View style={styles.signaledProblemContent}>
+                    <Text style={styles.signaledProblemContentCommonTextProps}>Actions réalisées</Text>
+                    <Text style={[styles.signaledProblemContentText, styles.signaledProblemContentCommonTextProps]}>
+                      {problem.actions}
+                    </Text>
+                  </View>
+                </View>
+              ))}
+            </ScrollView>
+          </View>
+
+          {problems.length > 1 && (
+            <View style={styles.paginationContainer}>
+              {problems.map((_, index) => (
+                <View
+                  key={index}
+                  style={[
+                    styles.paginationDot,
+                    { backgroundColor: index === activeIndex ? '#657DDF' : '#E8E8E8' }
+                  ]}
+                />
+              ))}
+            </View>
+          )}
+        </>
+      )}
     </View>
   );
 };
@@ -136,6 +148,18 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.18,
     shadowRadius: 12,
     overflow: 'hidden'
+  },
+  noProblemsContainer: {
+    width: '100%',
+    paddingHorizontal: 16,
+    paddingVertical: 24,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  noProblemsText: {
+    color: '#454343',
+    fontSize: 14,
+    fontWeight: '500'
   },
   scrollViewContainer: {
     width: '100%',

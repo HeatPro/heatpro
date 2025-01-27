@@ -1,26 +1,29 @@
 import React, { useState, useRef } from "react";
 import { Stack } from "expo-router";
 import Corner from '@/components/ui/HeatProComponents/Corner';
-import { SafeAreaView, View, Text, StyleSheet, Image } from "react-native";
+import { SafeAreaView, View, Text, StyleSheet, Image, Pressable } from "react-native";
 import {CameraView } from 'expo-camera';
 import CustomText from "@/components/ui/CustomText";
 
 
-export default function QrScan() {
-  const leftUpCorner = require('./../../../assets/images/leftUpCorner.png');
-  const leftDownCorner = require('./../../../assets/images/leftDownCorner.png');
-  const rightUpCorner = require('./../../../assets/images/rightUpCorner.png');
-  const rightDownCorner = require('./../../../assets/images/rightDownCorner.png');
+export default function QrScan({navigation}) {
+  const leftUpCorner = require('@/assets/images/leftUpCorner.png');
+  const leftDownCorner = require('@/assets/images/leftDownCorner.png');
+  const rightUpCorner = require('@/assets/images/rightUpCorner.png');
+  const rightDownCorner = require('@/assets/images/rightDownCorner.png');
 
   const [qrCodeRes, setQrCodeRes] = useState("QR Code Data");
 
   return (
     <SafeAreaView style={styles.container}>
       <Stack.Screen options={{ title: "Overview", headerShown: false }} />
-      <View style={styles.textContainer}>
-        <Image source={require('./../../../assets/images/LeftArrow.png')} />
+      <Pressable
+      onPress={()=>navigation.navigate('ScanQRCode')}
+      style={styles.textContainer}>
+        <Image
+        source={require('@/assets/images/LeftArrow.png')} />
         <CustomText text="Scan QR Code Machine"></CustomText>
-      </View>
+      </Pressable>
       <View style={styles.cameraContainer}>
         <CameraView
           style={styles.camera}

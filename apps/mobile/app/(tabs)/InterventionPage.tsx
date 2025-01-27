@@ -83,18 +83,23 @@ const InterventionSlider = () => {
   }[] = [{ icon: 'check-circle' }, { icon: 'check-circle' }, { icon: 'check-circle' }, { icon: 'check-circle' }];
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollContent}>
-      <View style={styles.container}>
-        <InterventionCardComponent title="Informations générales" fields={fields} />
-        <InterventionCardComponent title="Technicien intervenu" fields={fieldsTechnician} />
-        <SignaledProblemCard problems={problems}></SignaledProblemCard>
-        <VerificationsComponent verifications={verifications}></VerificationsComponent>
-        <PartsCardComponent title="Pièces remplacées" parts={parts}></PartsCardComponent>
-        <PartsCardComponent title="Pièces commandées" parts={parts}></PartsCardComponent>
-        <CommentCard title="Commentaires" comment={comment}></CommentCard>
-        <AssociatedMediaCard title="Media associés" media={media}></AssociatedMediaCard>
-      </View>
-    </ScrollView>
+    <>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <View style={styles.container}>
+          <InterventionCardComponent title="Informations générales" fields={fields} />
+          <InterventionCardComponent title="Technicien intervenu" fields={fieldsTechnician} />
+          <SignaledProblemCard problems={problems}></SignaledProblemCard>
+          <VerificationsComponent verifications={verifications}
+                                IfEmptyMessage={'Aucune vérification effectuée'}></VerificationsComponent>
+          <PartsCardComponent title="Pièces remplacées" parts={parts}
+                            IfEmptyMessage={'Aucune pièce remplacée'}></PartsCardComponent>
+          <PartsCardComponent title="Pièces commandées" parts={parts}
+                            IfEmptyMessage={'Aucune pièce commandée'}></PartsCardComponent>
+          <CommentCard title="Commentaires" comment={comment}></CommentCard>
+          <AssociatedMediaCard title="Media associés" media={media}></AssociatedMediaCard>
+        </View>
+      </ScrollView>
+    </>
   );
 };
 

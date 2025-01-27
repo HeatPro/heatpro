@@ -7,18 +7,19 @@ interface ModaleComponentProps {
   description: string;
   leftButtonText: string;
   rightButtonText: string;
+  onPressLeftButton: () => void;
+  onPressRightButton: () => void;
 }
 
 
-const ModaleComponent: React.FC<ModaleComponentProps> = ({ title, description, leftButtonText, rightButtonText }) => {
-
-  const onPressLeftButton = () => {
-    console.log('Bouton de gauche cliqué');
-  };
-
-  const onPressRightButton = () => {
-    console.log('Bouton de droite cliqué');
-  };
+const ModaleComponent: React.FC<ModaleComponentProps> = ({
+                                                           title,
+                                                           description,
+                                                           leftButtonText,
+                                                           rightButtonText,
+                                                           onPressLeftButton,
+                                                           onPressRightButton
+                                                         }) => {
 
   return (
     <View style={styles.container}>
@@ -37,10 +38,17 @@ const ModaleComponent: React.FC<ModaleComponentProps> = ({ title, description, l
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFFFFF0D',
+    backgroundColor: '#FFFFFF',
     borderRadius: 8,
     width: '92%',
-    padding: 20
+    padding: 20,
+    elevation: 3,
+
+    // Ombre pour iOS
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.18,
+    shadowRadius: 12
   },
   actionsRow: {
     flexDirection: 'row',
@@ -64,10 +72,10 @@ const styles = StyleSheet.create({
     marginVertical: 0,
     paddingVertical: 6,
     justifyContent: 'center',
-    shadowOffset: { width: 0, height: 3},
+    shadowOffset: { width: 0, height: 3 },
     shadowColor: '#000000',
     shadowRadius: 4,
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.1
   },
   leftButton: {
     backgroundColor: '#F69091',
