@@ -18,6 +18,16 @@ const NavigationBarComponent = () => {
       iconName: "assignment"
     },
     {
+      title: "Formulaire",
+      path: "/intervention-form-visualisation-page",
+      iconName: "edit"
+    },
+    {
+      title: "Spécification",
+      path: "/specification",
+      iconName: "article"
+    },
+    {
       title: "Profil",
       path: "/profile-page",
       iconName: "person"
@@ -25,10 +35,6 @@ const NavigationBarComponent = () => {
   ];
 
   const isPathActive = (itemPath: string) => {
-    // Check if we're in any intervention-related route
-    if (itemPath === '/intervention') {
-      return currentPath.startsWith('/intervention');
-    }
     return currentPath === itemPath;
   };
 

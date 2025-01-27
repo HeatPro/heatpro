@@ -8,7 +8,6 @@ export enum ProblemStatus {
   RESOLVED = 'Résolu'
 }
 
-// Configuration des icônes par statut
 const statusIcons = {
   [ProblemStatus.UNRESOLVED]: {
     name: 'close-circle',
@@ -33,9 +32,14 @@ export interface Problem {
 interface SignaledProblemCardProps {
   problems: Problem[];
   width?: number;
+  IfEmptyMessage?: string;
 }
 
-const SignaledProblemCard: React.FC<SignaledProblemCardProps> = ({ problems, width }) => {
+const SignaledProblemCard: React.FC<SignaledProblemCardProps> = ({ 
+  problems, 
+  width,
+  IfEmptyMessage = 'Aucun problème signalé' 
+}) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const screenWidth = Dimensions.get('window').width;
   const cardWidth = width || screenWidth * 0.9;
@@ -50,72 +54,83 @@ const SignaledProblemCard: React.FC<SignaledProblemCardProps> = ({ problems, wid
     <View style={[styles.signaledProblemContainer, { width: cardWidth }]}>
       <View style={styles.headerContainer}>
         <Text style={styles.signaledProblemTitle}>Problème signalé</Text>
-        <View style={styles.statusContainer}>
-          <View style={[
-            styles.statusBadge,
-            {
-              backgroundColor: problems[activeIndex].status === ProblemStatus.UNRESOLVED ? '#FFEBEB' :
-                problems[activeIndex].status === ProblemStatus.ON_GOING ? '#FFF4EB' : '#EBFFED'
-            }
-          ]}>
-            <Text style={[
-              styles.statusText,
+        {problems.length > 0 && (
+          <View style={styles.statusContainer}>
+            <View style={[
+              styles.statusBadge,
               {
-                color: problems[activeIndex].status === ProblemStatus.UNRESOLVED ? '#F69091' :
-                  problems[activeIndex].status === ProblemStatus.ON_GOING ? '#F6B490' : '#4ff555'
+                backgroundColor: problems[activeIndex].status === ProblemStatus.UNRESOLVED ? '#FFEBEB' :
+                  problems[activeIndex].status === ProblemStatus.ON_GOING ? '#FFF4EB' : '#EBFFED'
               }
-            ]}>{problems[activeIndex].status}</Text>
-            <Icon
-              name={statusIcons[problems[activeIndex].status].name}
-              size={20}
-              color={statusIcons[problems[activeIndex].status].color}
-              style={styles.statusIcon}
-            />
-          </View>
-        </View>
-      </View>
-      <View style={styles.scrollViewContainer}>
-        <ScrollView
-          horizontal
-          pagingEnabled
-          showsHorizontalScrollIndicator={false}
-          onScroll={handleScroll}
-          scrollEventThrottle={16}
-          contentContainerStyle={[
-            styles.scrollViewContent,
-            { width: (cardWidth) * problems.length }
-          ]}
-        >
-          {problems.map((problem, index) => (
-            <View key={index} style={[styles.problemContent, { width: cardWidth }]}>
-              <View style={styles.signaledProblemContent}>
-                <Text style={styles.signaledProblemContentCommonTextProps}>Description</Text>
-                <Text style={[styles.signaledProblemContentText, styles.signaledProblemContentCommonTextProps]}>
-                  {problem.description}
-                </Text>
-              </View>
-              <View style={styles.signaledProblemContent}>
-                <Text style={styles.signaledProblemContentCommonTextProps}>Actions réalisées</Text>
-                <Text style={[styles.signaledProblemContentText, styles.signaledProblemContentCommonTextProps]}>
-                  {problem.actions}
-                </Text>
-              </View>
+            ]}>
+              <Text style={[
+                styles.statusText,
+                {
+                  color: problems[activeIndex].status === ProblemStatus.UNRESOLVED ? '#F69091' :
+                    problems[activeIndex].status === ProblemStatus.ON_GOING ? '#F6B490' : '#4ff555'
+                }
+              ]}>{problems[activeIndex].status}</Text>
+              <Icon
+                name={statusIcons[problems[activeIndex].status].name}
+                size={20}
+                color={statusIcons[problems[activeIndex].status].color}
+                style={styles.statusIcon}
+              />
             </View>
-          ))}
-        </ScrollView>
+          </View>
+        )}
       </View>
+      
+      {problems.length > 0 ? (
+        <>
+          <View style={styles.scrollViewContainer}>
+            <ScrollView
+              horizontal
+              pagingEnabled
+              showsHorizontalScrollIndicator={false}
+              onScroll={handleScroll}
+              scrollEventThrottle={16}
+              contentContainerStyle={[
+                styles.scrollViewContent,
+                { width: (cardWidth) * problems.length }
+              ]}
+            >
+              {problems.map((problem, index) => (
+                <View key={index} style={[styles.problemContent, { width: cardWidth }]}>
+                  <View style={styles.signaledProblemContent}>
+                    <Text style={styles.signaledProblemContentCommonTextProps}>Description</Text>
+                    <Text style={[styles.signaledProblemContentText, styles.signaledProblemContentCommonTextProps]}>
+                      {problem.description}
+                    </Text>
+                  </View>
+                  <View style={styles.signaledProblemContent}>
+                    <Text style={styles.signaledProblemContentCommonTextProps}>Actions réalisées</Text>
+                    <Text style={[styles.signaledProblemContentText, styles.signaledProblemContentCommonTextProps]}>
+                      {problem.actions}
+                    </Text>
+                  </View>
+                </View>
+              ))}
+            </ScrollView>
+          </View>
 
-      <View style={styles.paginationContainer}>
-        {problems.map((_, index) => (
-          <View
-            key={index}
-            style={[
-              styles.paginationDot,
-              { backgroundColor: index === activeIndex ? '#657DDF' : '#E8E8E8' }
-            ]}
-          />
-        ))}
-      </View>
+          <View style={styles.paginationContainer}>
+            {problems.map((_, index) => (
+              <View
+                key={index}
+                style={[
+                  styles.paginationDot,
+                  { backgroundColor: index === activeIndex ? '#657DDF' : '#E8E8E8' }
+                ]}
+              />
+            ))}
+          </View>
+        </>
+      ) : (
+        <View style={styles.emptyMessageContainer}>
+          <Text style={styles.emptyMessage}>{IfEmptyMessage}</Text>
+        </View>
+      )}
     </View>
   );
 };
@@ -136,6 +151,16 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.18,
     shadowRadius: 12,
     overflow: 'hidden'
+  },
+  emptyMessageContainer: {
+    width: '100%',
+    padding: 16,
+    alignItems: 'center'
+  },
+  emptyMessage: {
+    color: '#9D9D9D',
+    fontSize: 14,
+    fontStyle: 'italic'
   },
   scrollViewContainer: {
     width: '100%',
