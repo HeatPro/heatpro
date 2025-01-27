@@ -9,59 +9,65 @@ export interface CalendarButtonProps {
 }
 
 export const CalendarButton: React.FC<CalendarButtonProps> = ({ calendar, style }) => {
-    const [currentPeriodeIndex, setCurrentPeriodeIndex] = useState(0);
+    const [currentPeriodeIndex, setCurrentPeriodeIndex] = useState(new Date().getMonth());
     const [currentText , setCurrentText] = useState("Aucune période");
     useEffect(() => {
         calendar.forEach(element => {
             console.log(element.start+" "+element.end);
         });
         if (calendar && calendar.length > 0) {
-          processPeriode();
+          processPeriode(currentPeriodeIndex);
         }
       }, [calendar]);
 
     
-    const processPeriode = ()  => {
-        if(calendar && calendar.length > 0){
-            let periode = calendar[currentPeriodeIndex];
+      const processPeriode = (index:number) => {
+        if (calendar && calendar.length > 0) {
+            let periode = calendar[index];
             const startDate = new Date(periode.start);
             const endDate = new Date(periode.end);
             const options = { day: 'numeric', month: 'short' } as const;
             const startFormatted = startDate.toLocaleDateString('en-US', options);
             const endFormatted = endDate.toLocaleDateString('en-US', options);
             setCurrentText(`${startFormatted} - ${endFormatted}`);
-        }else{
-            return 'Aucune période';
+        } else {
+            setCurrentText('Aucune période');
         }
-    }
-    
+    };
+
     const back = () => {
-        console.log('Menu de gauche cliqué');
-        if(currentPeriodeIndex > 0){
-            setCurrentPeriodeIndex(currentPeriodeIndex - 1);
-            processPeriode();
+        console.log("back", currentPeriodeIndex);
+        if (currentPeriodeIndex > 0) {
+            setCurrentPeriodeIndex(prevIndex => {
+                const newIndex = prevIndex - 1;
+                processPeriode(newIndex);
+                return newIndex;
+            });
         }
     };
     
     const forward = () => {
-        console.log('Menu de droite cliqué');
-        if(currentPeriodeIndex < 12){
-            setCurrentPeriodeIndex(currentPeriodeIndex + 1);
-            processPeriode();
+        console.log("forward", currentPeriodeIndex);
+        if (currentPeriodeIndex < calendar.length - 1) {
+            setCurrentPeriodeIndex(prevIndex => {
+                const newIndex = prevIndex + 1;
+                processPeriode(newIndex);
+                return newIndex;
+            });
         }
     };
 
     return (<View style={style ? [styles.container,style] : styles.container}>
         <Icon 
             name='arrow-back-ios'
-            size={20}
+            size={15}
             color='white'
             onPress={back}
         ></Icon>
         <Text style={styles.text}> {currentText} </Text>
         <Icon 
             name='arrow-forward-ios'
-            size={20}
+            size={15}
             color='white'
             onPress={forward}
         ></Icon>
@@ -70,10 +76,8 @@ export const CalendarButton: React.FC<CalendarButtonProps> = ({ calendar, style 
 
 const styles = StyleSheet.create({
     container:{
-        flex:0.6,
+        flex:0.5,
         flexDirection: 'row',
-        width: '100%',
-        alignItems: 'center',
         padding: 10,
         borderRadius: 20,
         height:"100%",

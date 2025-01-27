@@ -10,7 +10,7 @@ export function CustomButtonWithIcon({ onPress, iconName }: { onPress: () => voi
       icon={
         <Icon
           name={iconName}
-          size={25}
+          size={20}
           color="white"
         />
       }
@@ -26,6 +26,5 @@ const styles = StyleSheet.create({
         borderRadius: 100,
         alignItems: 'center',
         justifyContent: 'center',
-        height:90,
     },
 });

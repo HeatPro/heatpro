@@ -62,32 +62,27 @@ export function HeaderHistorique({
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: '#657DDF',
     width: '100%',
     borderTopStartRadius: 32,
     borderTopEndRadius: 32,
-    padding: 16
+    padding: '3%'
   },
   firstRow: {
-    marginTop: "10%",
+    paddingBottom:'4%',
     display: 'flex',
     flexDirection: 'row',
     width: '100%',
     justifyContent: 'space-around',
     alignItems: 'center',
-    marginBottom:"5%"
   },
   firstMenu: {
-    paddingTop:'5%',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
   },
   secondRow: {
-    padding:"5%",
+    paddingBottom:'2%',
     display: 'flex',
     flexDirection: 'row',
     width: '100%',
@@ -95,7 +90,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   title: {
-    fontSize: 25,
+    fontSize: 20,
     fontWeight: 'bold',
     color: '#FFFFFF',
     textShadowColor: '#00000040',
