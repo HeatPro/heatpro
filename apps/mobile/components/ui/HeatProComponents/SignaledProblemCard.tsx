@@ -32,14 +32,9 @@ export interface Problem {
 interface SignaledProblemCardProps {
   problems: Problem[];
   width?: number;
-  IfEmptyMessage?: string;
 }
 
-const SignaledProblemCard: React.FC<SignaledProblemCardProps> = ({ 
-  problems, 
-  width,
-  IfEmptyMessage = 'Aucun problème signalé' 
-}) => {
+const SignaledProblemCard: React.FC<SignaledProblemCardProps> = ({ problems, width }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const screenWidth = Dimensions.get('window').width;
   const cardWidth = width || screenWidth * 0.9;
@@ -53,8 +48,8 @@ const SignaledProblemCard: React.FC<SignaledProblemCardProps> = ({
   return (
     <View style={[styles.signaledProblemContainer, { width: cardWidth }]}>
       <View style={styles.headerContainer}>
-        <Text style={styles.signaledProblemTitle}>Problème signalé</Text>
-        {problems.length > 0 && (
+        <Text style={styles.signaledProblemTitle}>Problèmes signalés</Text>
+        {problems && problems.length > 0 && (
           <View style={styles.statusContainer}>
             <View style={[
               styles.statusBadge,
@@ -80,8 +75,12 @@ const SignaledProblemCard: React.FC<SignaledProblemCardProps> = ({
           </View>
         )}
       </View>
-      
-      {problems.length > 0 ? (
+
+      {!problems || problems.length === 0 ? (
+        <View style={styles.noProblemsContainer}>
+          <Text style={styles.noProblemsText}>Aucun problème à afficher</Text>
+        </View>
+      ) : (
         <>
           <View style={styles.scrollViewContainer}>
             <ScrollView
@@ -92,7 +91,7 @@ const SignaledProblemCard: React.FC<SignaledProblemCardProps> = ({
               scrollEventThrottle={16}
               contentContainerStyle={[
                 styles.scrollViewContent,
-                { width: (cardWidth) * problems.length }
+                { width: cardWidth * problems.length }
               ]}
             >
               {problems.map((problem, index) => (
@@ -114,22 +113,20 @@ const SignaledProblemCard: React.FC<SignaledProblemCardProps> = ({
             </ScrollView>
           </View>
 
-          <View style={styles.paginationContainer}>
-            {problems.map((_, index) => (
-              <View
-                key={index}
-                style={[
-                  styles.paginationDot,
-                  { backgroundColor: index === activeIndex ? '#657DDF' : '#E8E8E8' }
-                ]}
-              />
-            ))}
-          </View>
+          {problems.length > 1 && (
+            <View style={styles.paginationContainer}>
+              {problems.map((_, index) => (
+                <View
+                  key={index}
+                  style={[
+                    styles.paginationDot,
+                    { backgroundColor: index === activeIndex ? '#657DDF' : '#E8E8E8' }
+                  ]}
+                />
+              ))}
+            </View>
+          )}
         </>
-      ) : (
-        <View style={styles.emptyMessageContainer}>
-          <Text style={styles.emptyMessage}>{IfEmptyMessage}</Text>
-        </View>
       )}
     </View>
   );
@@ -152,15 +149,17 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     overflow: 'hidden'
   },
-  emptyMessageContainer: {
+  noProblemsContainer: {
     width: '100%',
-    padding: 16,
+    paddingHorizontal: 16,
+    paddingVertical: 24,
     alignItems: 'center',
+    justifyContent: 'center'
   },
-  emptyMessage: {
-    color: '#9D9D9D',
+  noProblemsText: {
+    color: '#454343',
     fontSize: 14,
-    fontStyle: 'italic'
+    fontWeight: '500'
   },
   scrollViewContainer: {
     width: '100%',

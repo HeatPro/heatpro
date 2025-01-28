@@ -23,6 +23,11 @@ const NavigationBarComponent = () => {
       iconName: "edit"
     },
     {
+      title: "Formulaire",
+      path: "/intervention-form-edition-page",
+      iconName: "edit"
+    },
+    {
       title: "Fiche technique",
       path: "/fiche-technique",
       iconName: "article"
