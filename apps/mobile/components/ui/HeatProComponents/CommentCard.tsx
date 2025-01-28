@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-const CommentCardComponent = ({ title, comment }) => {
+const CommentCardComponent = ({ title, comment, ifEmptyMessage }) => {
 
   return (
     <View style={styles.container}>
@@ -10,7 +10,10 @@ const CommentCardComponent = ({ title, comment }) => {
           <Text style={styles.cardTitle}>{title}</Text>
         </View>
         <View style={styles.cardInfoContainer}>
-          <Text style={styles.comment}>{comment}</Text>
+          {comment ? <Text style={styles.comment}>{comment}</Text> :
+            <Text style={styles.emptyMessage}>{ifEmptyMessage ? ifEmptyMessage : 'Aucun commentaire'}</Text>
+          }
+
         </View>
       </View>
     </View>
@@ -60,6 +63,13 @@ const styles = StyleSheet.create({
   },
   comment: {
     flexWrap: 'wrap'
+  },
+  emptyMessage: {
+    color: '#454343',
+    fontSize: 16,
+    fontWeight: '500',
+    textAlign: 'center',
+    width: '100%'
   }
 });
 
