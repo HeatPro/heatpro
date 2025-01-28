@@ -11,6 +11,7 @@ import HeaderFicheTechniqueIntervention, { IconProps } from '@/components/ui/Hea
 
 export default function InterventionDetail() {
   const { id } = useLocalSearchParams();
+  console.log("data : ",id);
 
   const onProfilePress = () => {
     console.log("profile")

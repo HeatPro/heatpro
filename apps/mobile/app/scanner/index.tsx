@@ -1,45 +1,35 @@
-import React, { useState, useRef } from "react";
-import { Stack } from "expo-router";
-import Corner from '@/components/ui/HeatProComponents/Corner';
-import { SafeAreaView, View, Text, StyleSheet, Image } from "react-native";
-import {CameraView } from 'expo-camera';
-import CustomText from "@/components/ui/CustomText";
+import { View, Text, StyleSheet, SafeAreaView, Pressable } from "react-native";
+import { Link, Stack } from "expo-router";
+
+import { useCameraPermissions } from "expo-camera";
 
 
-export default function QrScan() {
-  const leftUpCorner = require('@/assets/images/leftUpCorner.png');
-  const leftDownCorner = require('@/assets/images/leftDownCorner.png');
-  const rightUpCorner = require('@/assets/images/rightUpCorner.png');
-  const rightDownCorner = require('@/assets/images/rightDownCorner.png');
+export default function QrPerm() {
+  const [permission, requestPermission] = useCameraPermissions();
 
-  const [qrCodeRes, setQrCodeRes] = useState("QR Code Data");
+  const isPermissionGranted = Boolean(permission?.granted);
 
   return (
     <SafeAreaView style={styles.container}>
-      <Stack.Screen options={{ title: "Overview", headerShown: false }} />
-      <View style={styles.textContainer}>
-        <Image source={require('@/assets/images/LeftArrow.png')} />
-        <CustomText text="Scan QR Code Machine"></CustomText>
+      <Stack.Screen options={{ title: "QrScan", headerShown: false }} />
+      <Text style={styles.title}>QR Code Scanner</Text>
+      <View style={{ gap: 20 }}>
+        <Pressable onPress={requestPermission}>
+          <Text style={styles.buttonStyle}>Request Permissions</Text>
+        </Pressable>
+        <Link href={"/scanner/QRScan"} asChild>
+          <Pressable disabled={!isPermissionGranted}>
+            <Text
+              style={[
+                styles.buttonStyle,
+                { opacity: !isPermissionGranted ? 0.5 : 1 },
+              ]}
+            >
+              Scan Code
+            </Text>
+          </Pressable>
+        </Link>
       </View>
-      <View style={styles.cameraContainer}>
-        <CameraView
-          style={styles.camera}
-          onBarcodeScanned={(data) => {
-              if (data) {
-                setQrCodeRes(data.data);
-                console.log("Barcode scanned:", qrCodeRes);
-              }
-            }
-          }
-        />
-        <Corner imgSource={rightUpCorner} style={styles.rightUp}/>
-        <Corner imgSource={leftUpCorner} style={styles.leftUp}/>
-        <Corner imgSource={leftDownCorner} style={styles.leftDown}/>
-        <Corner imgSource={rightDownCorner} style={styles.rightDown}/>
-      </View>
-      <CustomText text="Placez le QR Code à scanner dans le cadre ci-dessus"></CustomText>
-      <CustomText style={{marginTop:'10%'}} text={`Data : ${qrCodeRes}`}></CustomText>
-
     </SafeAreaView>
   );
 }
@@ -47,38 +37,18 @@ export default function QrScan() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    backgroundColor: '#F4F5F880',
+    alignItems: "center",
+    backgroundColor: "black",
+    justifyContent: "space-around",
+    paddingVertical: 80,
   },
-  textContainer: {
-    flexDirection: 'row',
-    marginTop: "15%",
+  title: {
+    color: "white",
+    fontSize: 40,
   },
-  cameraContainer: {
-    width: '70%',
-    height: '40%',
-    marginBottom: "20%",
-    marginTop: "15%",
-  },
-  camera:{
-    flex:1
-  },
-  leftUp:{
-    top:0,
-    left:-1,
-  },
-  leftDown:{
-    bottom:0,
-    left:-1,
-  },
-  rightUp:{
-    top:0,
-    right:-3,
-  },
-  rightDown:{
-    bottom:0,
-    right:-3,
+  buttonStyle: {
+    color: "#0E7AFE",
+    fontSize: 20,
+    textAlign: "center",
   },
 });
