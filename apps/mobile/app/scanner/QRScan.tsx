@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Stack, Link} from "expo-router";
+import { Stack, router} from "expo-router";
 import Corner from '@/components/ui/HeatProComponents/Corner';
 import { SafeAreaView, View, Text, StyleSheet, Image } from "react-native";
 import {CameraView } from 'expo-camera';
@@ -11,9 +11,23 @@ export default function QrScan() {
   const leftDownCorner = require('@/assets/images/leftDownCorner.png');
   const rightUpCorner = require('@/assets/images/rightUpCorner.png');
   const rightDownCorner = require('@/assets/images/rightDownCorner.png');
-
   const [qrCodeRes, setQrCodeRes] = useState("QR Code Data");
+  const [isScanning, setIsScanning] = useState(false);
+  
 
+  const onBarcodeScanned = (data) => {
+    if (data && !isNaN(data.data)  ) {
+      setIsScanning(true);
+      setQrCodeRes(data.data);
+      router.push(`/intervention/${data.data}`);
+      console.log("Barcode scanned:", qrCodeRes);
+    }else{
+      setQrCodeRes("QR Code invalide");
+    }
+    setTimeout(() => setIsScanning(false), 2000); // Reset scanning state after 5 seconds
+  }
+    
+  
   return (
     <SafeAreaView style={styles.container}>
       <Stack.Screen options={{ title: "Overview", headerShown: false }} />
@@ -24,13 +38,7 @@ export default function QrScan() {
       <View style={styles.cameraContainer}>
         <CameraView
           style={styles.camera}
-          onBarcodeScanned={(data) => {
-              if (data) {
-                setQrCodeRes(data.data);
-                console.log("Barcode scanned:", qrCodeRes);
-              }
-            }
-          }
+          onBarcodeScanned={isScanning ? undefined : onBarcodeScanned}
         />
         <Corner imgSource={rightUpCorner} style={styles.rightUp}/>
         <Corner imgSource={leftUpCorner} style={styles.leftUp}/>
