@@ -24,15 +24,18 @@ export function NavigationBarItem({ title, onPress, iconName, iconSize, style, i
 
 const styles = StyleSheet.create({
   navBarItem: {
-    padding: 12,
+    height: 30,
+    padding: 0,
     width: '100%',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center'
   },
   navBarItemText: {
+    position: 'absolute',
+    top : 40,
     color: '#657DDF',
-    fontSize: 9,
+    fontSize: 8,
     fontWeight: '600',
   }
 });

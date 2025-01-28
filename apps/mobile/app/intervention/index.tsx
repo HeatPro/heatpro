@@ -111,14 +111,14 @@ const styles = StyleSheet.create({
   },
   cardWrapper: {
     width: '100%',
-    marginBottom: 12,
+    marginBottom: 0,
     borderRadius: 12,
     ...Platform.select({
       ios: {
-        shadowColor: '#000',
+        /*shadowColor: '#000',
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 0.2,
-        shadowRadius: 2,
+        shadowRadius: 2,*/
       },
       android: {
         elevation: 2,

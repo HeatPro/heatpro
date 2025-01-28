@@ -36,6 +36,7 @@ export default function RootLayout() {
   return (
     <IPProvider>
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <StatusBar hidden />
         <View style={{ flex: 1 }}>
           <Stack screenOptions={{ headerShown: false }}>
             <Stack.Screen name="index" />

@@ -90,6 +90,8 @@ export function HeaderFicheTechniqueIntervention({
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop: 40,
+    marginBottom: 8,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
