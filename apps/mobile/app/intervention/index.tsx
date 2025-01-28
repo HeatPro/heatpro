@@ -5,6 +5,7 @@ import { Link, router } from 'expo-router';
 import { TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { HeaderFicheTechniqueIntervention, IconProps } from '@/components/ui/HeatProComponents/headers/HeaderFicheTechniqueIntervention';
+import { HeaderHistorique } from '@/components/ui/HeatProComponents/headers/HeaderHistorique';
 
 export default function InterventionList() {
   const fields: Field[] = [
@@ -45,8 +46,8 @@ export default function InterventionList() {
 
   return (
     <>
-      <HeaderFicheTechniqueIntervention title="Intervention" leftIcon={leftIcon} rightIcon={rightIcon}
-                                        ></HeaderFicheTechniqueIntervention>
+       <HeaderHistorique title="Historique" description="Machine " serialNumber={333344} leftIcon={leftIcon} rightIcon={rightIcon}
+            leftButtonIcon='format-list-bulleted' rightButtonIcon='filter-list' ></HeaderHistorique>
         <ScrollView
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
