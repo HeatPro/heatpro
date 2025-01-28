@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     width: '100%',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF'
+    //backgroundColor: '#FFFFFF'
   },
   card: {
     backgroundColor: '#FFFFFF',
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '90%',
     padding: 16,
-    marginVertical: 16,
+    marginVertical: 8,
 
     // Ombre pour Android
     elevation: 3,
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     shadowColor: '#000000',
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.18,
-    shadowRadius: 12
+    shadowRadius: 6
   },
   cardHeaderContainer: {
     marginBottom: 12,
@@ -91,8 +91,9 @@ const styles = StyleSheet.create({
     alignItems: 'center' //TODO : mettre 'baseline' si on veut aligner par rapport au titre
   },
   cardTopRightInfo: {
+    paddingTop: 6,
     color: '#9D9D9D',
-    fontSize: 12,
+    fontSize: 10,
     height: '100%',
     fontWeight: '600'
   },

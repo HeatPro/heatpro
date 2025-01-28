@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#FFFFFF'
+    backgroundColor: '#F4F5F8'
   }
 });
 

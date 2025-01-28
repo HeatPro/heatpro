@@ -56,7 +56,7 @@ export default function HomePageScreen() {
           style={styles.bottomButton}
           textStyle={styles.bottomButtonText}
         />
-        <MaterialIcons name="logout" size={16} color="#FFFFFF" />
+        <MaterialIcons name="logout" size={24} color="#FFFFFF" style={styles.logoutButton}/>
       </View>
     </View>
   );
@@ -94,10 +94,10 @@ const styles = StyleSheet.create({
   actionButton: {
     backgroundColor: '#FFFFFF',
     borderRadius: 40,
-    shadowOffset: { width: 0, height: 3},
+    /*shadowOffset: { width: 0, height: 3},
     shadowColor: '#000000',
     shadowRadius: 12,
-    shadowOpacity: 0.7
+    shadowOpacity: 0.7*/
   },
   actionButtonText: {
     color: '#657DDF',
@@ -105,11 +105,12 @@ const styles = StyleSheet.create({
     fontWeight: '700'
   },
   shadow: {
-    textShadowColor: '#000000',
+    /*textShadowColor: '#000000',
     textShadowRadius: 24,
-    textShadowOffset: { width: 0, height: 2 }
+    textShadowOffset: { width: 0, height: 2 }*/
   },
   bottomContainer: {
+    height: 50,
     position: 'absolute',
     bottom: 8,
     display: 'flex',
@@ -120,15 +121,21 @@ const styles = StyleSheet.create({
   bottomButton: {
     padding: 0,
     margin: 0,
+    marginBottom: 20,
     marginVertical: 0,
     backgroundColor: 'none',
     borderRadius: 0
   },
   bottomButtonText: {
+    paddingLeft: 100,
     fontSize: 16,
     color: '#FFFFFF',
     fontStyle: 'italic',
     fontWeight: '600',
     lineHeight: 16
+  },
+  logoutButton: {
+    width: 100,
+    paddingBottom: 20,
   }
 });

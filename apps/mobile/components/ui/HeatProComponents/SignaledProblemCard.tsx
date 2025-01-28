@@ -143,19 +143,19 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
-    marginVertical: 16,
+    marginVertical: 8,
     paddingVertical: 16,
     elevation: 3,
     shadowColor: '#000000',
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.18,
-    shadowRadius: 12,
+    shadowRadius: 4,
     overflow: 'hidden'
   },
   emptyMessageContainer: {
     width: '100%',
     padding: 16,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   emptyMessage: {
     color: '#9D9D9D',
@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
   },
   scrollViewContent: {
     flexDirection: 'row',
-    width: '100%'
+    width: '100%',
   },
   headerContainer: {
     flexDirection: 'row',
@@ -176,7 +176,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     marginBottom: 16,
-    paddingHorizontal: 16
+    paddingHorizontal: 16,
+
   },
   statusContainer: {
     flexDirection: 'row',

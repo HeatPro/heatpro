@@ -51,7 +51,7 @@ const NavigationBarComponent = () => {
             title={item.title}
             onPress={() => handleNavigation(item.path)}
             iconName={item.iconName}
-            iconSize={24}
+            iconSize={28}
             style={styles.navbarElement}
             iconColor={isPathActive(item.path) ? "#657DDF" : "#9D9D9D"}
             textStyle={isPathActive(item.path) ? styles.navbarTextSelected : styles.navbarText}
@@ -67,27 +67,31 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   container: {
+    height: 50,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
+    marginBottom: 20,
     paddingVertical: 10,
     paddingHorizontal: 16,
+    paddingTop: 30,
     borderTopWidth: 1,
     borderTopColor: '#E0E0E0',
   },
   navbarElement: {
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
   },
   navbarTextSelected: {
-    fontSize: 12,
+    fontSize: 8,
     color: '#657DDF',
     fontWeight: '700',
     textAlign: 'center',
   },
   navbarText: {
-    fontSize: 12,
+    fontSize: 8,
     color: '#9D9D9D',
     fontWeight: '500',
     textAlign: 'center',

@@ -29,14 +29,14 @@ const HololensQRCodePage = () => {
   return (
     <View style={styles.globalContainer}>
       <View style={styles.header}>
-      <HeaderFicheTechniqueIntervention title="Formulaire" leftIcon={leftIcon} rightIcon={rightIcon}
+      <HeaderFicheTechniqueIntervention title="Lunettes AR" leftIcon={leftIcon} rightIcon={rightIcon}
                                         ></HeaderFicheTechniqueIntervention>
       </View>
       <View style={styles.container}>
         <View style={styles.qrCodeImage}>
           <QRCode
           value="https://6lcw9gp4g4.ufs.sh/f/ZVcn3ePGCcf5vQJlCpPqM0VGNQufie9Cdr7aT6A4RkwWYsKX"
-          size={qrCodeSize}
+          size={240}
           backgroundColor="white"
           color="black"
         />
@@ -61,22 +61,19 @@ const styles = StyleSheet.create({
   globalContainer: {
     width: '100%',
     height: '100%',
-    backgroundColor: '#B3B3B3'
+    backgroundColor: '#F4F5F8'
   },
   container: {
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
+    height: '80%',
     alignItems: 'center',
-    backgroundColor: '#B3B3B3'
+    justifyContent: 'center',
+    backgroundColor: '#F4F5F8'
   },
   header: {
-    backgroundColor: '#657DDF',
-    marginBottom: 128,
-    width: '100%',
-    paddingBottom: 62,
-    paddingTop: 24,
-    paddingHorizontal: 24
+
   },
   headerContent: {
     width: '50%',
@@ -135,12 +132,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderRadius: 13,
     width: '70%',
-    aspectRatio: 1
+    aspectRatio: 1,
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.18,
+    shadowRadius: 12
   },
   qrCode: {
     width: '100%',
     height: '100%',
-    resizeMode: 'cover'
+    resizeMode: 'cover',
   }
 });
 
