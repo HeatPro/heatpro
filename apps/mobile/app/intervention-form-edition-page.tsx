@@ -14,6 +14,7 @@ import { router } from 'expo-router';
 import ModaleComponent from '@/components/ui/HeatProComponents/ModaleComponent';
 import ProblemTrackingCard from '@/components/ui/HeatProComponents/edition-components/SignaledProblemEdition';
 import AddPartCardComponent from '@/components/ui/HeatProComponents/edition-components/add-part-card/AddPartCardComponent';
+import CommentEditionCardComponent from '@/components/ui/HeatProComponents/edition-components/CommentEdition';
 
 const InterventionFormEditionPage = () => {
 
@@ -67,13 +68,14 @@ const InterventionFormEditionPage = () => {
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.container}>
           <AddPartCardComponent title="Pièces commandées"></AddPartCardComponent>
+          <AddPartCardComponent title="Pièces remplacées"></AddPartCardComponent>
           <VerificationsComponent verifications={verifications}
                                   IfEmptyMessage={'Aucune vérification effectuée'}></VerificationsComponent>
           <PartsCardComponent title="Pièces remplacées" parts={parts}
                               IfEmptyMessage={'Aucune pièce remplacée'}></PartsCardComponent>
           <PartsCardComponent title="Pièces commandées" parts={parts}
                               IfEmptyMessage={'Aucune pièce commandée'}></PartsCardComponent>
-          <CommentCard title="Commentaires" comment={comment} ifEmptyMessage={'Aucun commentaire'}></CommentCard>
+         <CommentEditionCardComponent title="Commentaire"></CommentEditionCardComponent>
           <AssociatedMediaCard title="Media associés" media={media}
                                IfEmptyMessage={'Pas de media associés'}></AssociatedMediaCard>
           <CustomButton title={'Valider le formulaire'} style={styles.validationButton}
