@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, ScrollView, StyleSheet, View } from 'react-native';
-import SignaledProblemCard, { Problem, ProblemStatus } from '@/components/ui/HeatProComponents/SignaledProblemCard';
-import VerificationsComponent from '@/components/ui/HeatProComponents/VerificationsComponent';
-import PartsCardComponent, { Part } from '@/components/ui/HeatProComponents/PartsCard';
-import CommentCard from '@/components/ui/HeatProComponents/CommentCard';
+import { Problem } from '@/components/ui/HeatProComponents/SignaledProblemCard';
+import { Part } from '@/components/ui/HeatProComponents/PartsCard';
 import AssociatedMediaCard from '@/components/ui/HeatProComponents/AssociatedMediaCard';
 import {
   HeaderFicheTechniqueIntervention,
@@ -12,18 +10,19 @@ import {
 import { CustomButton } from '@/components/ui/CustomButton';
 import { router } from 'expo-router';
 import ModaleComponent from '@/components/ui/HeatProComponents/ModaleComponent';
-import ProblemTrackingCard from '@/components/ui/HeatProComponents/edition-components/SignaledProblemEdition';
-import AddPartCardComponent from '@/components/ui/HeatProComponents/edition-components/add-part-card/AddPartCardComponent';
+import AddPartCardComponent
+  from '@/components/ui/HeatProComponents/edition-components/add-part-card/AddPartCardComponent';
 import CommentEditionCardComponent from '@/components/ui/HeatProComponents/edition-components/CommentEdition';
+import VerificationEditionCardComponent from '@/components/ui/HeatProComponents/edition-components/VerificationEdition';
 
 const InterventionFormEditionPage = () => {
 
   const onProfilePress = () => {
-    router.push("/profile-page")
+    router.push('/profile-page');
   };
 
   const onDisconnectPress = () => {
-    router.push("/login")
+    router.push('/login');
   };
 
   const leftIcon: IconProps = { iconName: 'person', onPress: onProfilePress };
@@ -69,13 +68,9 @@ const InterventionFormEditionPage = () => {
         <View style={styles.container}>
           <AddPartCardComponent title="Pièces commandées"></AddPartCardComponent>
           <AddPartCardComponent title="Pièces remplacées"></AddPartCardComponent>
-          <VerificationsComponent verifications={verifications}
-                                  IfEmptyMessage={'Aucune vérification effectuée'}></VerificationsComponent>
-          <PartsCardComponent title="Pièces remplacées" parts={parts}
-                              IfEmptyMessage={'Aucune pièce remplacée'}></PartsCardComponent>
-          <PartsCardComponent title="Pièces commandées" parts={parts}
-                              IfEmptyMessage={'Aucune pièce commandée'}></PartsCardComponent>
-         <CommentEditionCardComponent title="Commentaire"></CommentEditionCardComponent>
+          <VerificationEditionCardComponent title="Vérifications effectuées"
+                                            verifications={verifications}></VerificationEditionCardComponent>
+          <CommentEditionCardComponent title="Commentaire"></CommentEditionCardComponent>
           <AssociatedMediaCard title="Media associés" media={media}
                                IfEmptyMessage={'Pas de media associés'}></AssociatedMediaCard>
           <CustomButton title={'Valider le formulaire'} style={styles.validationButton}
