@@ -26,9 +26,11 @@ const VerificationEditionCardComponent = ({ title, verifications }) => {
       if (isLastComponent && data.verification.trim() !== '') {
         return returnNewVerificationCardComponent(prev, totalComponents + 1);
       }
+
       return prev;
     });
   };
+
 
   const returnNewVerificationCardComponent = (prev: any, newId: number) => {
     return [
@@ -37,10 +39,39 @@ const VerificationEditionCardComponent = ({ title, verifications }) => {
         <VerificationEditionContentCardComponent
           id={newId}
           onDataChange={(data) => handleVerificationDataChange(newId, data)}
+          onDelete={() => handleDeleteVerification(newId)}
         />
       </View>
     ];
   };
+
+  const handleDeleteVerification = (idToDelete: number) => {
+    // Supprimer les données de la vérification
+    setVerificationsData((prev) => {
+      const newData = { ...prev };
+      delete newData[idToDelete];
+      return newData;
+    });
+
+    // Supprimer le composant visuel et réindexer les IDs
+    setAddedVerifications((prev) => {
+      return prev
+        .filter((_, index) => index + 1 !== idToDelete) // +1 car l'index 0 est rendu séparément
+        .map((component, newIndex) => {
+          const newId = newIndex + 1;
+          return (
+            <View key={newId} style={styles.infoRow}>
+              <VerificationEditionContentCardComponent
+                id={newId}
+                onDataChange={(data) => handleVerificationDataChange(newId, data)}
+                onDelete={() => handleDeleteVerification(newId)}
+              />
+            </View>
+          );
+        });
+    });
+  };
+
 
   return (
     <View style={styles.container}>
@@ -53,6 +84,7 @@ const VerificationEditionCardComponent = ({ title, verifications }) => {
             <VerificationEditionContentCardComponent
               id={0}
               onDataChange={(data) => handleVerificationDataChange(0, data)}
+              onDelete={() => handleDeleteVerification(0)}
             ></VerificationEditionContentCardComponent>
           </View>
           {addedVerifications}

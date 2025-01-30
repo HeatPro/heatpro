@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextInput, View, StyleSheet } from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 interface CustomInput {
@@ -8,6 +8,7 @@ interface CustomInput {
   secureTextEntry?: boolean;
   value?: string;
   onChangeText?: (text: string) => void;
+  onIconPress?: () => void;
   containerStyle?: any;
   style?: any;
   placeholderColor?: any;
@@ -15,7 +16,18 @@ interface CustomInput {
   iconStyle?: any;
 }
 
-export function CustomInput({ placeholder, icon, secureTextEntry, onChangeText, containerStyle, focusedStyle, style, placeholderColor, iconStyle }: CustomInput) {
+export function CustomInput({
+                              placeholder,
+                              icon,
+                              secureTextEntry,
+                              onChangeText,
+                              onIconPress,
+                              containerStyle,
+                              focusedStyle,
+                              style,
+                              placeholderColor,
+                              iconStyle
+                            }: CustomInput) {
 
   const [isFocused, setIsFocused] = React.useState(false);
 
@@ -25,14 +37,19 @@ export function CustomInput({ placeholder, icon, secureTextEntry, onChangeText, 
         placeholder={placeholder}
         secureTextEntry={secureTextEntry}
         style={[styles.input, style]}
-        placeholderTextColor={placeholderColor ? placeholderColor : "#8B8B8B"}
+        placeholderTextColor={placeholderColor ? placeholderColor : '#8B8B8B'}
         onChangeText={onChangeText}
         underlineColorAndroid="transparent"
         autoCapitalize="none"
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
+        pointerEvents="auto"
       />
-      <Ionicons name={icon} size={20} color="#8B8B8B" style={[styles.icon, iconStyle]} />
+      <Ionicons name={icon}
+                size={20}
+                color="#8B8B8B"
+                style={[styles.icon, iconStyle]}
+                onPress={onIconPress} />
     </View>
   );
 }
@@ -58,5 +75,5 @@ const styles = StyleSheet.create({
   },
   icon: {
     fontWeight: 'bold'
-  },
+  }
 });

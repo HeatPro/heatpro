@@ -8,12 +8,14 @@ interface VerificationEditionContentCardComponentProps {
   onDataChange: (data: {
     verification: string;
   }) => void;
+  onDelete: () => void;
   id: number;
 }
 
 const VerificationEditionContentCardComponent: React.FC<VerificationEditionContentCardComponentProps> = ({
                                                                                                            field,
                                                                                                            onDataChange,
+                                                                                                           onDelete,
                                                                                                            id
                                                                                                          }) => {
 
@@ -21,6 +23,14 @@ const VerificationEditionContentCardComponent: React.FC<VerificationEditionConte
 
   const onVerificationChanged = (verification: string) => {
     setVerification(verification);
+  };
+
+  const handleIconPress = () => {
+    if (verification.length > 0) {
+      onDelete();
+    } else {
+      // TODO : fonctionnalité microphone
+    }
   };
 
   React.useEffect(() => {
@@ -35,14 +45,16 @@ const VerificationEditionContentCardComponent: React.FC<VerificationEditionConte
       <CustomInput
         style={styles.cardInfo}
         placeholder="Nouvelle vérification"
-        icon="mic"
+        icon={verification.length > 0 ? 'trash' : 'mic'}
         placeholderColor="#45434354"
         containerStyle={styles.inputContainer}
         focusedStyle={styles.focusedStyle}
         iconStyle={styles.iconStyle}
         onChangeText={onVerificationChanged}
+        onIconPress={handleIconPress}
         value={verification}
       />
+      <Icon name="delete" size={24} color="#ff4444" style={styles.icon} onPress={onDelete} />
     </>
   );
 };
