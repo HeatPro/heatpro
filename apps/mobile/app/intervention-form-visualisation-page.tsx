@@ -93,7 +93,7 @@ const InterventionFormVisualisationPage = () => {
     { name: 'Rotor de pompe à circulation', ref: '824526874123' }
   ];
 
-  const comment: string;
+  let comment: string;
   const media: {
     icon: string,
     color?: string

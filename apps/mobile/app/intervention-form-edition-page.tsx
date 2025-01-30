@@ -12,7 +12,8 @@ import {
 import { CustomButton } from '@/components/ui/CustomButton';
 import { router } from 'expo-router';
 import ModaleComponent from '@/components/ui/HeatProComponents/ModaleComponent';
-import ProblemTrackingCard from '@/components/ui/HeatProComponents/SignaledProblemEdition';
+import ProblemTrackingCard from '@/components/ui/HeatProComponents/edition-components/SignaledProblemEdition';
+import AddPartCardComponent from '@/components/ui/HeatProComponents/edition-components/add-part-card/AddPartCardComponent';
 
 const InterventionFormEditionPage = () => {
 
@@ -27,8 +28,7 @@ const InterventionFormEditionPage = () => {
   const leftIcon: IconProps = { iconName: 'person', onPress: onProfilePress };
   const rightIcon: IconProps = { iconName: 'logout', onPress: onDisconnectPress };
 
-  const problems: Problem[] = [
-  ];
+  const problems: Problem[] = [];
 
   const verifications = [];
 
@@ -66,18 +66,7 @@ const InterventionFormEditionPage = () => {
                                         leftMenu="Visualisation" rightMenu="Édition"></HeaderFicheTechniqueIntervention>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.container}>
-          <ProblemTrackingCard
-            problem={problems[0]}
-            onAddAction={(action) => {
-              // Handle adding new action
-            }}
-            onDeleteAction={(id) => {
-              // Handle deleting action
-            }}
-            onUpdateStatus={(status) => {
-              // Handle status update
-            }}
-          />
+          <AddPartCardComponent title="Pièces commandées"></AddPartCardComponent>
           <VerificationsComponent verifications={verifications}
                                   IfEmptyMessage={'Aucune vérification effectuée'}></VerificationsComponent>
           <PartsCardComponent title="Pièces remplacées" parts={parts}
