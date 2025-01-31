@@ -46,29 +46,18 @@ const VerificationEditionCardComponent = ({ title, verifications }) => {
   };
 
   const handleDeleteVerification = (idToDelete: number) => {
-    // Supprimer les données de la vérification
+    if ((addedVerifications.length === 0 && idToDelete === 0)) {
+      return;
+    }
+
     setVerificationsData((prev) => {
       const newData = { ...prev };
       delete newData[idToDelete];
       return newData;
     });
 
-    // Supprimer le composant visuel et réindexer les IDs
     setAddedVerifications((prev) => {
-      return prev
-        .filter((_, index) => index + 1 !== idToDelete) // +1 car l'index 0 est rendu séparément
-        .map((component, newIndex) => {
-          const newId = newIndex + 1;
-          return (
-            <View key={newId} style={styles.infoRow}>
-              <VerificationEditionContentCardComponent
-                id={newId}
-                onDataChange={(data) => handleVerificationDataChange(newId, data)}
-                onDelete={() => handleDeleteVerification(newId)}
-              />
-            </View>
-          );
-        });
+      return prev.filter((component) => parseInt(component.key) !== idToDelete);
     });
   };
 
@@ -77,7 +66,7 @@ const VerificationEditionCardComponent = ({ title, verifications }) => {
     <View style={styles.container}>
       <View style={styles.card}>
         <View style={styles.cardTitleContainer}>
-          <Text style={styles.cardTitle}>{title ? title : 'Verifications effectuées'}</Text>
+          <Text style={styles.cardTitle}>{title || 'Verifications effectuées'}</Text>
         </View>
         <View style={styles.cardInfoContainer}>
           <View key={0} style={styles.infoRow}>
