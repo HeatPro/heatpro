@@ -19,6 +19,7 @@ interface CustomInput {
 export function CustomInput({
                               placeholder,
                               icon,
+                              value,
                               secureTextEntry,
                               onChangeText,
                               onIconPress,
@@ -35,6 +36,7 @@ export function CustomInput({
     <View style={[styles.inputContainer, containerStyle, isFocused && focusedStyle]}>
       <TextInput
         placeholder={placeholder}
+        value={value}
         secureTextEntry={secureTextEntry}
         style={[styles.input, style]}
         placeholderTextColor={placeholderColor ? placeholderColor : '#8B8B8B'}

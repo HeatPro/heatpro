@@ -10,6 +10,14 @@ const CommentEditionCardComponent = ({ title }) => {
     setComment(comment);
   };
 
+  const handleIconPress = () => {
+    if (comment.length > 0) {
+      setComment('');
+    } else {
+      // TODO : fonctionnalité microphone
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.card}>
@@ -20,11 +28,12 @@ const CommentEditionCardComponent = ({ title }) => {
           <CustomInput
             style={styles.cardInfo}
             placeholder="Votre commentaire"
-            icon="mic"
+            icon={comment.length > 0 ? 'trash' : 'mic'}
             placeholderColor="#45434354"
             containerStyle={styles.inputContainer}
             focusedStyle={styles.focusedStyle}
             iconStyle={styles.iconStyle}
+            onIconPress={handleIconPress}
             onChangeText={onCommentChanged}
             value={comment}></CustomInput>
         </View>

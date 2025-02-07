@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import VerificationEditionContentCardComponent
-  from '@/components/ui/HeatProComponents/edition-components/VerificationEditionContentComponent';
+  from '@/components/ui/HeatProComponents/edition-components/add-verification/VerificationEditionContentComponent';
 
 const VerificationEditionCardComponent = ({ title, verifications }) => {
 
@@ -47,6 +47,21 @@ const VerificationEditionCardComponent = ({ title, verifications }) => {
 
   const handleDeleteVerification = (idToDelete: number) => {
     if ((addedVerifications.length === 0 && idToDelete === 0)) {
+      return;
+    }
+
+    const nextVerification = verificationsData[idToDelete + 1];
+    const currentVerification = verificationsData[idToDelete];
+
+    console.log(currentVerification);
+
+    const isNextEmpty = !nextVerification || Object.keys(nextVerification).length === 0;
+    const hasCurrentData = currentVerification && Object.keys(currentVerification).length > 0;
+
+    console.log(isNextEmpty);
+    console.log(hasCurrentData);
+
+    if (isNextEmpty && hasCurrentData) {
       return;
     }
 

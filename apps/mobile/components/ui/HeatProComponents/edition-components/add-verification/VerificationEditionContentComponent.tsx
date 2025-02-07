@@ -27,7 +27,7 @@ const VerificationEditionContentCardComponent: React.FC<VerificationEditionConte
 
   const handleIconPress = () => {
     if (verification.length > 0) {
-      onDelete();
+      setVerification('');
     } else {
       // TODO : fonctionnalité microphone
     }

@@ -13,7 +13,8 @@ import ModaleComponent from '@/components/ui/HeatProComponents/ModaleComponent';
 import AddPartCardComponent
   from '@/components/ui/HeatProComponents/edition-components/add-part-card/AddPartCardComponent';
 import CommentEditionCardComponent from '@/components/ui/HeatProComponents/edition-components/CommentEdition';
-import VerificationEditionCardComponent from '@/components/ui/HeatProComponents/edition-components/VerificationEdition';
+import VerificationEditionCardComponent from '@/components/ui/HeatProComponents/edition-components/add-verification/VerificationEdition';
+import MediaEditionComponent from '@/components/ui/HeatProComponents/edition-components/MediaEdition';
 
 const InterventionFormEditionPage = () => {
 
@@ -71,8 +72,7 @@ const InterventionFormEditionPage = () => {
           <VerificationEditionCardComponent title="Vérifications effectuées"
                                             verifications={verifications}></VerificationEditionCardComponent>
           <CommentEditionCardComponent title="Commentaire"></CommentEditionCardComponent>
-          <AssociatedMediaCard title="Media associés" media={media}
-                               IfEmptyMessage={'Pas de media associés'}></AssociatedMediaCard>
+          <MediaEditionComponent title="Media associés"></MediaEditionComponent>
           <CustomButton title={'Valider le formulaire'} style={styles.validationButton}
                         onPress={onFormValidation}></CustomButton>
           <Modal
