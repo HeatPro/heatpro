@@ -231,19 +231,19 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   statusLabel: {
-    fontSize: 16,
-    color: '#757575',
+    fontSize: 12,
+    color: '#454343',
     marginRight: 8
   },
   statusButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 12,
-    paddingVertical: 6,
+    paddingHorizontal: 4,
+    paddingVertical: 2,
     borderRadius: 4
   },
   statusText: {
-    fontSize: 16,
+    fontSize: 10,
     marginRight: 4
   },
   dropdown: {
@@ -264,7 +264,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12
   },
   dropdownText: {
-    fontSize: 16
+    fontSize: 10
   },
   section: {
     display: 'flex',
