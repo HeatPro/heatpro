@@ -2,19 +2,17 @@ import React, { useState } from 'react';
 import { Modal, ScrollView, StyleSheet, View } from 'react-native';
 import { Problem } from '@/components/ui/HeatProComponents/SignaledProblemCard';
 import { Part } from '@/components/ui/HeatProComponents/PartsCard';
-import AssociatedMediaCard from '@/components/ui/HeatProComponents/AssociatedMediaCard';
-import {
-  HeaderFicheTechniqueIntervention,
-  IconProps
-} from '@/components/ui/HeatProComponents/headers/HeaderFicheTechniqueIntervention';
+import { IconProps } from '@/components/ui/HeatProComponents/headers/HeaderFicheTechniqueIntervention';
 import { CustomButton } from '@/components/ui/CustomButton';
 import { router } from 'expo-router';
 import ModaleComponent from '@/components/ui/HeatProComponents/ModaleComponent';
 import AddPartCardComponent
   from '@/components/ui/HeatProComponents/edition-components/add-part-card/AddPartCardComponent';
 import CommentEditionCardComponent from '@/components/ui/HeatProComponents/edition-components/CommentEdition';
-import VerificationEditionCardComponent from '@/components/ui/HeatProComponents/edition-components/add-verification/VerificationEdition';
+import VerificationEditionCardComponent
+  from '@/components/ui/HeatProComponents/edition-components/add-verification/VerificationEdition';
 import MediaEditionComponent from '@/components/ui/HeatProComponents/edition-components/MediaEdition';
+import SignaledProblemEdition from '@/components/ui/HeatProComponents/edition-components/SignaledProblemEdition';
 
 const InterventionFormEditionPage = () => {
 
@@ -63,10 +61,9 @@ const InterventionFormEditionPage = () => {
 
   return (
     <View style={styles.parentContainer}>
-      <HeaderFicheTechniqueIntervention title="Formulaire" leftIcon={leftIcon} rightIcon={rightIcon}
-                                        leftMenu="Visualisation" rightMenu="Édition"></HeaderFicheTechniqueIntervention>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.container}>
+          <SignaledProblemEdition problem={problems} title="Problèmes signalés"></SignaledProblemEdition>
           <AddPartCardComponent title="Pièces commandées"></AddPartCardComponent>
           <AddPartCardComponent title="Pièces remplacées"></AddPartCardComponent>
           <VerificationEditionCardComponent title="Vérifications effectuées"

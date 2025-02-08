@@ -5,10 +5,7 @@ import VerificationsComponent from '@/components/ui/HeatProComponents/Verificati
 import PartsCardComponent, { Part } from '@/components/ui/HeatProComponents/PartsCard';
 import CommentCard from '@/components/ui/HeatProComponents/CommentCard';
 import AssociatedMediaCard from '@/components/ui/HeatProComponents/AssociatedMediaCard';
-import {
-  HeaderFicheTechniqueIntervention,
-  IconProps
-} from '@/components/ui/HeatProComponents/headers/HeaderFicheTechniqueIntervention';
+import { IconProps } from '@/components/ui/HeatProComponents/headers/HeaderFicheTechniqueIntervention';
 import { CustomButton } from '@/components/ui/CustomButton';
 import { router } from 'expo-router';
 import ModaleComponent from '@/components/ui/HeatProComponents/ModaleComponent';
@@ -17,11 +14,11 @@ import { Field } from '@/components/ui/HeatProComponents/InfoCard';
 const InterventionFormVisualisationPage = () => {
 
   const onProfilePress = () => {
-    router.push("/profile-page")
+    router.push('/profile-page');
   };
 
   const onDisconnectPress = () => {
-    router.push("/login")
+    router.push('/login');
   };
 
   const leftIcon: IconProps = { iconName: 'person', onPress: onProfilePress };
@@ -121,8 +118,6 @@ const InterventionFormVisualisationPage = () => {
 
   return (
     <View style={styles.parentContainer}>
-      <HeaderFicheTechniqueIntervention title="Formulaire" leftIcon={leftIcon} rightIcon={rightIcon}
-                                        leftMenu="Visualisation" rightMenu="Édition"></HeaderFicheTechniqueIntervention>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.container}>
           <SignaledProblemCard problems={problems}></SignaledProblemCard>

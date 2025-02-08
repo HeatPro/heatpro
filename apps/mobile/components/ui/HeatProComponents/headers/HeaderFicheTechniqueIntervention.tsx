@@ -15,55 +15,57 @@ interface HeaderFicheTechniqueInterventionProps {
   leftMenu?: string;
   rightMenu?: string;
   style?: object;
+  activeView: 'visualization' | 'edition';  // Ajout de la prop
+  onViewChange: (view: 'visualization' | 'edition') => void;  // Ajout de la prop
 }
 
 export function HeaderFicheTechniqueIntervention({
-  title,
-  leftIcon,
-  rightIcon,
-  leftMenu,
-  rightMenu,
-  style
-}: Readonly<HeaderFicheTechniqueInterventionProps>) {
-  const [indexSelectedMenu, setIndexSelectedMenu] = useState(0);
+                                                   title,
+                                                   leftIcon,
+                                                   rightIcon,
+                                                   leftMenu,
+                                                   rightMenu,
+                                                   style,
+                                                   activeView,
+                                                   onViewChange
+                                                 }: Readonly<HeaderFicheTechniqueInterventionProps>) {
+  // Suppression du state local qui n'est plus nécessaire
 
   const onPress = () => {
-    console.log('Menu de gauche cliqué');
-    setIndexSelectedMenu(0);
+    onViewChange('visualization');
   };
 
   const onPress2 = () => {
-    console.log('Menu de droite cliqué');
-    setIndexSelectedMenu(1);
+    onViewChange('edition');
   };
 
   return (
     <View style={[styles.container, style]}>
       <View style={styles.firstRow}>
         <TouchableOpacity style={styles.leftIcon} onPress={leftIcon.onPress}>
-          <Icon 
-            name={leftIcon.iconName} 
-            size={leftIcon.iconSize || 24} 
-            color="#FFFFFF" 
+          <Icon
+            name={leftIcon.iconName}
+            size={leftIcon.iconSize || 24}
+            color="#FFFFFF"
           />
         </TouchableOpacity>
         <Text style={styles.title}>{title}</Text>
         <TouchableOpacity style={styles.rightIcon} onPress={rightIcon.onPress}>
-          <Icon 
-            name={rightIcon.iconName} 
-            size={rightIcon.iconSize || 24} 
-            color="#FFFFFF" 
+          <Icon
+            name={rightIcon.iconName}
+            size={rightIcon.iconSize || 24}
+            color="#FFFFFF"
           />
         </TouchableOpacity>
       </View>
 
-      {(leftMenu || rightMenu) && (
+      {Boolean(leftMenu || rightMenu) && (
         <View style={styles.secondRow}>
-          {leftMenu && (
-            <TouchableOpacity 
+          {Boolean(leftMenu) && (
+            <TouchableOpacity
               style={[
-                styles.menuElement, 
-                indexSelectedMenu === 0 && styles.menuElementSelected,
+                styles.menuElement,
+                activeView === 'visualization' && styles.menuElementSelected,
                 styles.firstMenu
               ]}
               onPress={onPress}
@@ -71,11 +73,11 @@ export function HeaderFicheTechniqueIntervention({
               <Text style={styles.menuElementText}>{leftMenu}</Text>
             </TouchableOpacity>
           )}
-          {rightMenu && (
-            <TouchableOpacity 
+          {Boolean(rightMenu) && (
+            <TouchableOpacity
               style={[
                 styles.menuElement,
-                indexSelectedMenu === 1 && styles.menuElementSelected
+                activeView === 'edition' && styles.menuElementSelected
               ]}
               onPress={onPress2}
             >
