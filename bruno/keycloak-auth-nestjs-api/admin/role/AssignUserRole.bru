@@ -1,0 +1,29 @@
+meta {
+  name: AssignUserRole
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{base_url_keycloak}}/admin/realms/{{realm}}/users/{{user_id}}/role-mappings/realm
+  body: json
+  auth: none
+}
+
+body:json {
+  [
+     {
+      "id": "4efb70fb-aef8-4e90-bb14-38ed3a9b63b2",
+      "name": "ADMIN",
+      "description": "",
+      "composite": false,
+      "clientRole": false,
+      "containerId": "debcd9d5-9f25-4b13-9ed5-0c2f5e54ce3c"
+    }
+  ]
+}
+
+script:pre-request {
+  const token = bru.getVar("adminToken");
+  req.setHeader("Authorization", `Bearer ${token}`);
+}

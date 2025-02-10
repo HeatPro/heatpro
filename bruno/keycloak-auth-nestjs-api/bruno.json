@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "keycloak-auth-nestjs-api",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

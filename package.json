@@ -1,9 +1,39 @@
 {
-  "name": "heatpro",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
+  "name": "heatPro",
+  "private": true,
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
   "devDependencies": {
-    "turbo": "^2.3.0"
+    "prettier": "^3.2.5",
+    "turbo": "^2.3.3",
+    "typescript": "5.5.4"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "npm@9.2.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "dependencies": {
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "expo-barcode-scanner": "^13.0.1",
+    "expo-camera": "^16.0.10",
+    "expo-local-authentication": "^15.0.1",
+    "expo-secure-store": "^14.0.0",
+    "nest-keycloak-connect": "^1.10.1",
+    "react-native-camera": "^4.2.1",
+    "react-native-elements": "^3.4.3",
+    "react-native-qrcode-svg": "^6.3.14",
+    "react-native-vector-icons": "^10.2.0",
+    "react-native-vision-camera": "^4.6.3",
+    "react-native-svg": "14.0.0",
+    "uploadthing": "^7.4.4"
   }
 }
