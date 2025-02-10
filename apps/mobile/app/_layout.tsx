@@ -58,14 +58,8 @@ export default function RootLayout() {
                 gestureEnabled: true
               }}
             />
-            <Stack.Screen 
-              name="intervention-form-visualisation-page" 
-              options={{
-                gestureEnabled: true
-              }}
-            />
             <Stack.Screen
-              name="intervention-form-edition-page"
+              name="intervention-form"
               options={{
                 gestureEnabled: true
               }}

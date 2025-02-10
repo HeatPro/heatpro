@@ -146,8 +146,7 @@ const styles = StyleSheet.create({
     shadowColor: '#000000',
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.18,
-    shadowRadius: 4,
-    overflow: 'hidden'
+    shadowRadius: 4
   },
   noProblemsContainer: {
     width: '100%',

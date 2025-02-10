@@ -19,12 +19,7 @@ const NavigationBarComponent = () => {
     },
     {
       title: "Formulaire",
-      path: "/intervention-form-visualisation-page",
-      iconName: "edit"
-    },
-    {
-      title: "Formulaire",
-      path: "/intervention-form-edition-page",
+      path: "/intervention-form",
       iconName: "edit"
     },
     {

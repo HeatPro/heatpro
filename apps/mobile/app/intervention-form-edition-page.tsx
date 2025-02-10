@@ -1,34 +1,33 @@
 import React, { useState } from 'react';
 import { Modal, ScrollView, StyleSheet, View } from 'react-native';
-import SignaledProblemCard, { Problem, ProblemStatus } from '@/components/ui/HeatProComponents/SignaledProblemCard';
-import VerificationsComponent from '@/components/ui/HeatProComponents/VerificationsComponent';
-import PartsCardComponent, { Part } from '@/components/ui/HeatProComponents/PartsCard';
-import CommentCard from '@/components/ui/HeatProComponents/CommentCard';
-import AssociatedMediaCard from '@/components/ui/HeatProComponents/AssociatedMediaCard';
-import {
-  HeaderFicheTechniqueIntervention,
-  IconProps
-} from '@/components/ui/HeatProComponents/headers/HeaderFicheTechniqueIntervention';
+import { Problem } from '@/components/ui/HeatProComponents/SignaledProblemCard';
+import { Part } from '@/components/ui/HeatProComponents/PartsCard';
+import { IconProps } from '@/components/ui/HeatProComponents/headers/HeaderFicheTechniqueIntervention';
 import { CustomButton } from '@/components/ui/CustomButton';
 import { router } from 'expo-router';
 import ModaleComponent from '@/components/ui/HeatProComponents/ModaleComponent';
-import ProblemTrackingCard from '@/components/ui/HeatProComponents/SignaledProblemEdition';
+import AddPartCardComponent
+  from '@/components/ui/HeatProComponents/edition-components/add-part-card/AddPartCardComponent';
+import CommentEditionCardComponent from '@/components/ui/HeatProComponents/edition-components/CommentEdition';
+import VerificationEditionCardComponent
+  from '@/components/ui/HeatProComponents/edition-components/add-verification/VerificationEdition';
+import MediaEditionComponent from '@/components/ui/HeatProComponents/edition-components/MediaEdition';
+import SignaledProblemEdition from '@/components/ui/HeatProComponents/edition-components/SignaledProblemEdition';
 
 const InterventionFormEditionPage = () => {
 
   const onProfilePress = () => {
-    router.push("/profile-page")
+    router.push('/profile-page');
   };
 
   const onDisconnectPress = () => {
-    router.push("/login")
+    router.push('/login');
   };
 
   const leftIcon: IconProps = { iconName: 'person', onPress: onProfilePress };
   const rightIcon: IconProps = { iconName: 'logout', onPress: onDisconnectPress };
 
-  const problems: Problem[] = [
-  ];
+  const problems: Problem[] = [];
 
   const verifications = [];
 
@@ -62,31 +61,15 @@ const InterventionFormEditionPage = () => {
 
   return (
     <View style={styles.parentContainer}>
-      <HeaderFicheTechniqueIntervention title="Formulaire" leftIcon={leftIcon} rightIcon={rightIcon}
-                                        leftMenu="Visualisation" rightMenu="Édition"></HeaderFicheTechniqueIntervention>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.container}>
-          <ProblemTrackingCard
-            problem={problems[0]}
-            onAddAction={(action) => {
-              // Handle adding new action
-            }}
-            onDeleteAction={(id) => {
-              // Handle deleting action
-            }}
-            onUpdateStatus={(status) => {
-              // Handle status update
-            }}
-          />
-          <VerificationsComponent verifications={verifications}
-                                  IfEmptyMessage={'Aucune vérification effectuée'}></VerificationsComponent>
-          <PartsCardComponent title="Pièces remplacées" parts={parts}
-                              IfEmptyMessage={'Aucune pièce remplacée'}></PartsCardComponent>
-          <PartsCardComponent title="Pièces commandées" parts={parts}
-                              IfEmptyMessage={'Aucune pièce commandée'}></PartsCardComponent>
-          <CommentCard title="Commentaires" comment={comment} ifEmptyMessage={'Aucun commentaire'}></CommentCard>
-          <AssociatedMediaCard title="Media associés" media={media}
-                               IfEmptyMessage={'Pas de media associés'}></AssociatedMediaCard>
+          <SignaledProblemEdition problem={problems} title="Problèmes signalés"></SignaledProblemEdition>
+          <AddPartCardComponent title="Pièces commandées"></AddPartCardComponent>
+          <AddPartCardComponent title="Pièces remplacées"></AddPartCardComponent>
+          <VerificationEditionCardComponent title="Vérifications effectuées"
+                                            verifications={verifications}></VerificationEditionCardComponent>
+          <CommentEditionCardComponent title="Commentaire"></CommentEditionCardComponent>
+          <MediaEditionComponent title="Media associés"></MediaEditionComponent>
           <CustomButton title={'Valider le formulaire'} style={styles.validationButton}
                         onPress={onFormValidation}></CustomButton>
           <Modal
